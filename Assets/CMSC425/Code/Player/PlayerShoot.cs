@@ -80,6 +80,7 @@ public class PlayerShoot : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bullet.transform.localScale += scaleChange;  //modify this instance only
+            
             //otherwise bulletprefab.transform.localScale would modify the original prefab itself, permanently changing it
         }
         isBig = true;

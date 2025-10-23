@@ -6,13 +6,13 @@ public class MovePlayer : MonoBehaviour
 {
     [Header("Movement")]
     public float speed = 4;
-    public Key forwardMove = Key.UpArrow;
-    public Key backwardMove = Key.DownArrow;
-    public Key leftMove = Key.LeftArrow;
-    public Key rightMove = Key.RightArrow;
+    public Key forwardMove = Key.W;
+    public Key backwardMove = Key.S;
+    public Key leftMove = Key.A;
+    public Key rightMove = Key.D;
 
     [Header("Dash")]
-    public Key dashKey = Key.LeftShift;
+    public Key dashKey = Key.Space;
     public float dashMultiplier = 2.75f;
     public float dashDuration = 0.20f;
     public float dashCooldown = 0.60f;
