@@ -790,10 +790,10 @@ GameObject:
   - component: {fileID: 1950113193}
   - component: {fileID: 1950113192}
   - component: {fileID: 1950113191}
+  - component: {fileID: 1950113195}
   - component: {fileID: 1950113196}
   - component: {fileID: 1950113197}
   - component: {fileID: 1950113198}
-  - component: {fileID: 1950113199}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -891,6 +891,23 @@ Transform:
   - {fileID: 911858892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1950113195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950113190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a3e78ef6a96e148bb7fca4b0698725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  forwardMove: 37
+  backwardMove: 33
+  leftMove: 15
+  rightMove: 18
 --- !u!114 &1950113196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,33 +964,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1208900415017191153, guid: 5a4cc93a6d9cbe94eb723e0dbac81a49, type: 3}
   firePoint: {fileID: 911858892}
   fireRate: 0.2
-<<<<<<< HEAD
---- !u!114 &1950113199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950113190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 490e4ddcf172f2f428290cac63c647b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  forwardMove: 63
-  backwardMove: 64
-  leftMove: 61
-  rightMove: 62
-  dashKey: 51
-  dashMultiplier: 2.75
-  dashDuration: 0.2
-  dashCooldown: 0.6
-  dashTrailColor: {r: 0, g: 1, b: 1, a: 1}
-=======
-  counter: 0
-  isBig: 0
->>>>>>> d4ac66f6fc1961526f37629addc5b4d8b5c1ab12
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
