@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour, IEnemyProjectile
 {
     [SerializeField] private int damage = 1;
-    [SerializeField] private float speed = 4f;
+    [SerializeField] private float speed = 2.5f;
     [SerializeField] private float lifeTime = 5f;
     private float timeLeft;
 
@@ -15,6 +15,7 @@ public class EnemyBullet : MonoBehaviour, IEnemyProjectile
     public void Start()
     {
         timeLeft = lifeTime;
+        speed = 2.5f;
     }
     void Update()
     {

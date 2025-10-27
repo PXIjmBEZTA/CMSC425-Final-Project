@@ -34,10 +34,8 @@ public class PlayerShoot : MonoBehaviour
 
         if (shootButton.wasReleasedThisFrame)
         {
-            Debug.Log($"Counter on release: {counter}");
             if (counter >= 1.2f)
             {
-                Debug.Log("My charged shot is ready!!!!");
                 BigShoot();
             }
 
