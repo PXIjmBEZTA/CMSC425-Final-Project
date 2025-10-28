@@ -8,9 +8,10 @@ public class PlayerShoot : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform firePoint; //the exact place where the bullets originate from
-    public float fireRate = 0.2f; //seconds between shots
+    public float fireRate = 1; //seconds between shots
     private float nextTimeFire = 0f;
     public ButtonControl shootButton;
+    public KeyControl secondShootButton;
 
     public float counter = 0f;
     private Vector3 scaleChange = new Vector3(.6f, .6f, .6f);
@@ -18,7 +19,9 @@ public class PlayerShoot : MonoBehaviour
     public bool isBig;
     private void Start()
     {
+        fireRate = 1;
         shootButton = Mouse.current.leftButton;
+        secondShootButton = Keyboard.current[Key.J];
         //shootButton = Keyboard.current.mKey;
         //shootButton = Keyboard.current.spaceKey;
     }
@@ -29,10 +32,10 @@ public class PlayerShoot : MonoBehaviour
             nextTimeFire -= Time.deltaTime;
 
 
-        if (shootButton.isPressed)
+        if (shootButton.isPressed || secondShootButton.isPressed)
             counter += Time.deltaTime;
 
-        if (shootButton.wasReleasedThisFrame)
+        if (shootButton.wasReleasedThisFrame || secondShootButton.wasReleasedThisFrame)
         {
             if (counter >= 1.2f)
             {
