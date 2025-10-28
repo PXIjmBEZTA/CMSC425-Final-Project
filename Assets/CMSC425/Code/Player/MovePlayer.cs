@@ -25,6 +25,7 @@ public class MovePlayer : MonoBehaviour
     private float nextDashReadyTime = 0f;
     private TrailRenderer dashTrail;
 
+
     void Start()
     {
         baseSpeed = speed;
@@ -35,6 +36,7 @@ public class MovePlayer : MonoBehaviour
         leftKey     = kb[leftMove];
         rightKey    = kb[rightMove];
         dashKeyCtrl = kb[dashKey];
+
 
         // --- Create the Trail Renderer at runtime ---
         dashTrail = gameObject.AddComponent<TrailRenderer>();
@@ -83,6 +85,7 @@ public class MovePlayer : MonoBehaviour
         {
             move.Normalize();
             transform.Translate(move * speed * Time.deltaTime, Space.World);
+       
         }
     }
 }
