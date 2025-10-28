@@ -87,5 +87,16 @@ public class MovePlayer : MonoBehaviour
             transform.Translate(move * speed * Time.deltaTime, Space.World);
        
         }
+
+        //delta = playerWidth / 2. playerWidth = 0.2 (currently)
+        float delta = 0.1f; //Space considered because of player size
+        float minX = -6f;
+        float maxX = 6f;
+        float minZ = -11f;
+        float maxZ = -7f;
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, minX + delta, maxX - delta);
+        pos.z = Mathf.Clamp(pos.z, minZ + delta, maxZ - delta);
+        transform.position = pos;
     }
 }
