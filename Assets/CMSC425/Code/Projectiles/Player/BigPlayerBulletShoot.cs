@@ -1,17 +1,18 @@
 using UnityEngine;
 
-public class PlayerBulletShoot : MonoBehaviour, IPlayerBullet
-{
+public class BigPlayerBulletShoot : MonoBehaviour, IPlayerBullet 
+{  //to be attatched to the bigBullet Prefab in particular
     public float speed;
     public float lifeTime;
     public float timeLeft;
     [SerializeField] private int damage;
     public int Damage => damage;
+    public float acceleration = 0.00076f;
     void Start()
     {
-        speed = 3.0f;
+        speed = 1.2f;
         lifeTime = 5f;
-        damage = 2;
+        damage = 5;
         timeLeft = lifeTime;
     }
 
@@ -26,9 +27,9 @@ public class PlayerBulletShoot : MonoBehaviour, IPlayerBullet
         }
         else
         {
-
+            //since this whole script is particularly for bigBullets, no need to see the condition "isBig"
+            speed += acceleration*120 * Time.deltaTime*300;
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
         }
     }
 
