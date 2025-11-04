@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Rendering;
@@ -16,6 +17,9 @@ public class PlayerShoot : MonoBehaviour
     public KeyControl secondShootButton;
 
     public float counter = 0f;
+
+    public UnityEvent onShoot;
+    public UnityEvent onBigShoot;
 
     private void Start()
     {
@@ -40,11 +44,13 @@ public class PlayerShoot : MonoBehaviour
             if (counter >= 1.0f)
             {
                 BigShoot();
+                onBigShoot.Invoke();
             }
 
             else
             {
                 Shoot();
+                onShoot.Invoke();
             }
 
 
@@ -63,22 +69,24 @@ public class PlayerShoot : MonoBehaviour
     
     //a wrapper method that encapsulates both
 
-    public void Shoot()
+    public bool Shoot()
     {
         if (bulletPrefab != null && firePoint != null)
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
-        
+        return true;
     }
 
-    public void BigShoot()
+    public bool BigShoot()
     {
         if (bigBulletPrefab != null && firePoint != null)
         {
             Instantiate(bigBulletPrefab, firePoint.position, firePoint.rotation);
         }
 
-        
+        return true;
     }
+
+    
 }
