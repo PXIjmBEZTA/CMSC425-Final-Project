@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Rendering;
@@ -7,6 +8,8 @@ using UnityEngine.Rendering;
 public class PlayerShoot : MonoBehaviour
 {
     public GameObject bulletPrefab;
+
+    public GameObject bigBulletPrefab; //alternative for big Shoot
     public Transform firePoint; //the exact place where the bullets originate from
     public float fireRate = 1; //seconds between shots
     private float nextTimeFire = 0f;
@@ -14,9 +17,10 @@ public class PlayerShoot : MonoBehaviour
     public KeyControl secondShootButton;
 
     public float counter = 0f;
-    private Vector3 scaleChange = new Vector3(.6f, .6f, .6f);
 
-    public bool isBig;
+    public UnityEvent onShoot;
+    public UnityEvent onBigShoot;
+
     private void Start()
     {
         fireRate = 1;
@@ -37,15 +41,16 @@ public class PlayerShoot : MonoBehaviour
 
         if (shootButton.wasReleasedThisFrame || secondShootButton.wasReleasedThisFrame)
         {
-            if (counter >= 1.2f)
+            if (counter >= 1.0f)
             {
                 BigShoot();
+                onBigShoot.Invoke();
             }
-
 
             else
             {
                 Shoot();
+                onShoot.Invoke();
             }
 
 
@@ -70,23 +75,18 @@ public class PlayerShoot : MonoBehaviour
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
-        isBig = false;
         return true;
-        
     }
 
     public bool BigShoot()
     {
-        if (bulletPrefab != null && firePoint != null)
+        if (bigBulletPrefab != null && firePoint != null)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bullet.transform.localScale += scaleChange;  //modify this instance only
-            
-            //otherwise bulletprefab.transform.localScale would modify the original prefab itself, permanently changing it
+            Instantiate(bigBulletPrefab, firePoint.position, firePoint.rotation);
         }
-        isBig = true;
-        return true;
 
-        
+        return true;
     }
+
+    
 }
