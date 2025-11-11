@@ -69,11 +69,17 @@ public class TakeDamage : MonoBehaviour
     IEnumerator InvincibilityPeriod() //when invincible, move slower and flash rapidly
     {
         isInvincible = true;
-        player.speed /= 2;
+        player.speed /= 2; //reduce player move speed
+        GetComponent<PlayerShoot>().enabled = false; //disable shooting
+
         StartCoroutine(InvincibilityFlashing());
+
         yield return new WaitForSeconds(invincibilityDuration);
+
         isInvincible = false;
-        player.speed *= 2;
+        player.speed *= 2; //reset player move speed
+        GetComponent<PlayerShoot>().enabled = true;//enable shooting
+
         GetComponent<MeshRenderer>().material = defaultMaterial;
     }
 
@@ -81,7 +87,6 @@ public class TakeDamage : MonoBehaviour
     {
         MeshRenderer rend = GetComponent<MeshRenderer>();
         bool toggle = false;
-
         while (isInvincible)
         {
             rend.material = toggle ? invincibleMaterial : defaultMaterial;
