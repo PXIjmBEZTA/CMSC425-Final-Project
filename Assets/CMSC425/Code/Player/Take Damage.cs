@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 public class TakeDamage : MonoBehaviour
 {
     private Vector3 startPosition;
@@ -10,9 +11,16 @@ public class TakeDamage : MonoBehaviour
     private bool isInvincible = false;
     public int maxLives = 4;
     private int lives;
+    private MovePlayer player;
+
+    [Header ("Invincibility Flashing")]
+    public Material defaultMaterial;
+    public Material invincibleMaterial;
+    private float timeBetweenFlashes = 0.1f;
 
     private void Start()
     {
+        player = GetComponent<MovePlayer>();
         lives = maxLives;
         startPosition = transform.position;
         startRotation = transform.rotation;
@@ -29,14 +37,14 @@ public class TakeDamage : MonoBehaviour
             projectile.OnHit(gameObject);
             Debug.Log($"I took damage! I have {lives} lives left!");
             if (lives > 0)
-                StartCoroutine(Respawn());
+                StartCoroutine(InvincibilityPeriod());
             else
                 StartCoroutine(Die());
         }
         
     }
 
-    IEnumerator Respawn()
+    IEnumerator Respawn() //This is not used anymore. 
     {
         isRespawning = true;
         GetComponent<Collider>().enabled = false;        // disable collisions
@@ -58,13 +66,31 @@ public class TakeDamage : MonoBehaviour
         StartCoroutine(InvincibilityPeriod());
     }
 
-    IEnumerator InvincibilityPeriod()
+    IEnumerator InvincibilityPeriod() //when invincible, move slower and flash rapidly
     {
         isInvincible = true;
+        player.speed /= 2;
+        StartCoroutine(InvincibilityFlashing());
         yield return new WaitForSeconds(invincibilityDuration);
         isInvincible = false;
+        player.speed *= 2;
+        GetComponent<MeshRenderer>().material = defaultMaterial;
     }
 
+    IEnumerator InvincibilityFlashing()
+    {
+        MeshRenderer rend = GetComponent<MeshRenderer>();
+        bool toggle = false;
+
+        while (isInvincible)
+        {
+            rend.material = toggle ? invincibleMaterial : defaultMaterial;
+            toggle = !toggle;
+            yield return new WaitForSeconds(timeBetweenFlashes);
+        }
+        rend.material = defaultMaterial;
+        
+    }
     IEnumerator Die()
     {
         Debug.Log("Oh no! I am dead! You lose :("); //Later, we swap to Gunner instead of flyer

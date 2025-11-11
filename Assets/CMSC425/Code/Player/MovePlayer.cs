@@ -60,14 +60,14 @@ public class MovePlayer : MonoBehaviour
         {
             isDashing = true;
             dashEndTime = Time.time + dashDuration;
-            speed = baseSpeed * dashMultiplier;
+            speed *= dashMultiplier;
             dashTrail.emitting = true; // turn on trail
         }
 
         if (isDashing && Time.time >= dashEndTime)
         {
             isDashing = false;
-            speed = baseSpeed;
+            speed /= dashMultiplier;
             dashTrail.emitting = false; // turn off trail
             nextDashReadyTime = Time.time + dashCooldown;
         }
