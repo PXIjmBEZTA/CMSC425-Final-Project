@@ -12,11 +12,20 @@ public class TakeDamage : MonoBehaviour
     public int maxLives = 4;
     private int lives;
     private MovePlayer player;
+    public float speedReductionWhenInvincible = 0.5f;
 
     [Header ("Invincibility Flashing")]
     public Material defaultMaterial;
     public Material invincibleMaterial;
     private float timeBetweenFlashes = 0.1f;
+
+    public GameObject shootGuyPrefab;
+
+    [Header("UI")]
+    public PlayerHeartUI heart1; //leftmost heart
+    public PlayerHeartUI heart2;
+    public PlayerHeartUI heart3;
+    public PlayerHeartUI heart4; //rightmost heart
 
     private void Start()
     {
@@ -36,6 +45,7 @@ public class TakeDamage : MonoBehaviour
             lives -= 1; //lose a life
             projectile.OnHit(gameObject);
             Debug.Log($"I took damage! I have {lives} lives left!");
+            StartCoroutine(UpdateHearts());
             if (lives > 0)
                 StartCoroutine(InvincibilityPeriod());
             else
@@ -54,22 +64,17 @@ public class TakeDamage : MonoBehaviour
 
         yield return new WaitForSeconds(respawnDelay); //this is a delay before continuing code
 
-        transform.position = startPosition;
-        transform.rotation = startRotation;
+        Vector3 shootGuyStartPos = startPosition;
+        shootGuyStartPos.z = -11 + 0.1f; //the +0.1f is accounting for the player's size
 
-        GetComponent<Collider>().enabled = true;        // disable collisions
-        GetComponent<MeshRenderer>().enabled = true;    // hide player visuals
-        GetComponent<MovePlayer>().enabled = true;
-        GetComponent<PlayerShoot>().enabled = true;
-
-        isRespawning = false;
-        StartCoroutine(InvincibilityPeriod());
+        Instantiate(shootGuyPrefab, shootGuyStartPos, startRotation);
+        Destroy(gameObject);
     }
 
     IEnumerator InvincibilityPeriod() //when invincible, move slower and flash rapidly
     {
         isInvincible = true;
-        player.speed /= 2; //reduce player move speed
+        player.speed *= speedReductionWhenInvincible; //reduce player move speed
         GetComponent<PlayerShoot>().enabled = false; //disable shooting
 
         StartCoroutine(InvincibilityFlashing());
@@ -77,7 +82,7 @@ public class TakeDamage : MonoBehaviour
         yield return new WaitForSeconds(invincibilityDuration);
 
         isInvincible = false;
-        player.speed *= 2; //reset player move speed
+        player.speed /= speedReductionWhenInvincible; //reset player move speed
         GetComponent<PlayerShoot>().enabled = true;//enable shooting
 
         GetComponent<MeshRenderer>().material = defaultMaterial;
@@ -98,8 +103,34 @@ public class TakeDamage : MonoBehaviour
     }
     IEnumerator Die()
     {
-        Debug.Log("Oh no! I am dead! You lose :("); //Later, we swap to Gunner instead of flyer
-        Destroy(gameObject);
-        yield return new WaitForEndOfFrame();
+        Debug.Log("Oh no! I am dead! Now spawning ShootGuy"); //Later, we swap to Gunner instead of flyer
+        yield return StartCoroutine(Respawn());
+    }
+
+    public void ActivateTemporaryInvincibility(float duration)
+    {
+        if (!gameObject.activeInHierarchy) return;
+        if (isInvincible) return;
+        StartCoroutine(TemporaryInvincibility(duration));
+    }
+
+    private IEnumerator TemporaryInvincibility(float duration)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
+    }
+
+    private IEnumerator UpdateHearts()
+    {
+        if (lives == 3)
+            heart4.DestroyHeart();
+        if (lives == 2)
+            heart3.DestroyHeart();
+        if (lives == 1)
+            heart2.DestroyHeart();
+        if (lives == 0)
+            heart1.DestroyHeart();
+        yield return null;
     }
 }

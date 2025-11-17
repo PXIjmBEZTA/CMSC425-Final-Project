@@ -15,7 +15,7 @@ public class MovePlayer : MonoBehaviour
     public Key dashKey = Key.Space;
     public float dashMultiplier = 2.75f;
     public float dashDuration = 0.20f;
-    public float dashCooldown = 0.60f;
+    public float dashCooldown = 1.5f;
     public Color dashTrailColor = Color.cyan;
 
     private KeyControl forwardKey, backwardKey, leftKey, rightKey, dashKeyCtrl;
@@ -25,6 +25,7 @@ public class MovePlayer : MonoBehaviour
     private float nextDashReadyTime = 0f;
     private TrailRenderer dashTrail;
 
+    private TakeDamage takeDamageScript;
 
     void Start()
     {
@@ -46,6 +47,9 @@ public class MovePlayer : MonoBehaviour
         dashTrail.material = new Material(Shader.Find("Sprites/Default"));
         dashTrail.startColor = dashTrail.endColor = dashTrailColor;
         dashTrail.emitting = false;                   // only active during dash
+
+
+        takeDamageScript = GetComponent<TakeDamage>();
     }
 
     void Update()
@@ -62,6 +66,8 @@ public class MovePlayer : MonoBehaviour
             dashEndTime = Time.time + dashDuration;
             speed *= dashMultiplier;
             dashTrail.emitting = true; // turn on trail
+
+            takeDamageScript.ActivateTemporaryInvincibility(dashDuration);
         }
 
         if (isDashing && Time.time >= dashEndTime)

@@ -23,7 +23,6 @@ public class PlayerShoot : MonoBehaviour
 
     private void Start()
     {
-        fireRate = 1;
         shootButton = Mouse.current.leftButton;
         secondShootButton = Keyboard.current[Key.J];
         //shootButton = Keyboard.current.mKey;
