@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 4327814370252619043}
   - component: {fileID: 3031672048524679733}
   - component: {fileID: 2333476372315412655}
-  - component: {fileID: 630547965708587479}
   - component: {fileID: 348960845272799199}
   - component: {fileID: 4470026448742821408}
   - component: {fileID: -7829078874008215234}
@@ -144,25 +143,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &630547965708587479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4016442617397004774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ad1ec10f2d680440b6ef8be895f56f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnDelay: 1.5
-  invincibilityDuration: 2
-  maxLives: 4
-  speedReductionWhenInvincible: 0.5
-  defaultMaterial: {fileID: 2100000, guid: 6c71bbe010a66c444968945b59402c80, type: 2}
-  invincibleMaterial: {fileID: 2100000, guid: ee65af80aa416a04c98d55776622ea7a, type: 2}
-  shootGuyPrefab: {fileID: 0}
 --- !u!54 &348960845272799199
 Rigidbody:
   m_ObjectHideFlags: 0
