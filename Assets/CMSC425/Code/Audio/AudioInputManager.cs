@@ -36,4 +36,16 @@ public class AudioInputManager : MonoBehaviour
         Debug.Log("BIG shoot playeed");
         AudioManager.Instance.Play(AudioManager.SoundType.BigShoot);
     }
+
+    public void PlaySwordSwingSound()
+    {
+        Debug.Log("SHINGGGG");
+        AudioManager.Instance.Play(AudioManager.SoundType.SwingSword);
+    }
+
+    public void PlayDashSound()
+    {
+        Debug.Log("WOOOSHH");
+        AudioManager.Instance.Play(AudioManager.SoundType.Dash);
+    }
 }
