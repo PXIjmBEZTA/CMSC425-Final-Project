@@ -26,12 +26,9 @@ public class MovePlayer : MonoBehaviour
     private float nextDashReadyTime = 0f;
     private TrailRenderer dashTrail;
 
-<<<<<<< Updated upstream:Assets/CMSC425/Code/Player/FlyGuy/MovePlayer.cs
     private TakeDamage takeDamageScript;
-=======
     public UnityEvent onDash; //<-- unity event for audio
 
->>>>>>> Stashed changes:Assets/CMSC425/Code/Player/MovePlayer.cs
 
     void Start()
     {
@@ -63,7 +60,7 @@ public class MovePlayer : MonoBehaviour
         if (!isDashing && Time.time >= nextDashReadyTime && dashKeyCtrl.wasPressedThisFrame)
         {
             HandleDashA();
-            onDash.Invoke();
+            onDash.Invoke(); //
         }
 
         if (isDashing && Time.time >= dashEndTime)

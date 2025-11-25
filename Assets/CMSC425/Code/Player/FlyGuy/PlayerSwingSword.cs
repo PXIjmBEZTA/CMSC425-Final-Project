@@ -13,15 +13,12 @@ public class PlayerSwingSword : MonoBehaviour
     public float swordDistance = 1;
 
     [Header("Controls")]
-<<<<<<< Updated upstream:Assets/CMSC425/Code/Player/FlyGuy/PlayerSwingSword.cs
     public ButtonControl swordButton;
 
-=======
     public ButtonControl shootButton;
 
 
     public UnityEvent onSwing;
->>>>>>> Stashed changes:Assets/CMSC425/Code/Player/PlayerSwingSword.cs
 
     private bool isSwinging = false;
     private float nextSwingTime = 0f;

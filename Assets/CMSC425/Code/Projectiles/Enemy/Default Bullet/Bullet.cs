@@ -12,10 +12,14 @@ public class EnemyBullet : MonoBehaviour, IEnemyProjectile
     public float LifeTime => lifeTime;
     public float TimeLeft => timeLeft;
 
+    [HideInInspector] public bool SuppressSound = false; //<- we'll spress this sound for bomber enemies
     public void Start()
     {
         timeLeft = lifeTime;
         speed = 2.5f;
+
+        //play shoot sound as soon as when bullet spawns
+        AudioManager.Instance.Play(AudioManager.SoundType.EnemyShoot);
     }
     void Update()
     {

@@ -27,6 +27,8 @@ public class TakeDamage : MonoBehaviour
     public PlayerHeartUI heart3;
     public PlayerHeartUI heart4; //rightmost heart
 
+    public UIShaker uiShaker;
+
     private void Start()
     {
         player = GetComponent<MovePlayer>();
@@ -43,6 +45,11 @@ public class TakeDamage : MonoBehaviour
         if (projectile != null) //if hit by an enemy projectile
         {
             lives -= 1; //lose a life
+            if (uiShaker != null) //and added shake
+            {
+                uiShaker.Shake();
+            }
+
             projectile.OnHit(gameObject);
             Debug.Log($"I took damage! I have {lives} lives left!");
             StartCoroutine(UpdateHearts());
@@ -51,7 +58,7 @@ public class TakeDamage : MonoBehaviour
             else
                 StartCoroutine(Die());
         }
-        
+        //future notes for myself: ^this block was accidentally duplicated, causing 2 lives to be taken instead of one (deleted now)
     }
 
     IEnumerator Respawn() //This is not used anymore. 
@@ -123,14 +130,32 @@ public class TakeDamage : MonoBehaviour
 
     private IEnumerator UpdateHearts()
     {
-        if (lives == 3)
-            heart4.DestroyHeart();
-        if (lives == 2)
-            heart3.DestroyHeart();
-        if (lives == 1)
-            heart2.DestroyHeart();
-        if (lives == 0)
-            heart1.DestroyHeart();
+        // Debug.Log($"UpdateHearts called. Lives: {lives}");
+
+        AudioManager.Instance.Play(AudioManager.SoundType.Damage);
+        
+        if (lives == 3 && heart4 != null)
+        {
+            // Debug.Log("Setting heart4 empty");
+            heart4.SetEmpty();
+        }
+        if (lives == 2 && heart3 != null)
+        {
+            // Debug.Log("Setting heart3 empty");
+            heart3.SetEmpty();
+        }
+        if (lives == 1 && heart2 != null)
+        {
+            // Debug.Log("Setting heart2 empty");
+            heart2.SetEmpty();
+        }
+        if (lives == 0 && heart1 != null)
+        {
+            // Debug.Log("Setting heart1 empty");
+            heart1.SetEmpty();
+            if (uiShaker != null)
+                uiShaker.SetDeadSprite();
+        }
         yield return null;
     }
 }

@@ -12,6 +12,11 @@ public class AudioManager : MonoBehaviour
         Music_Battle,
         Dash,
 
+        EnemyShoot,
+        BombExplode,
+
+        Damage,
+
         SwingSword
         // Add more sound types as needed
     }

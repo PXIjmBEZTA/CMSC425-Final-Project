@@ -164,6 +164,11 @@ MonoBehaviour:
   speedReductionWhenInvincible: 0.5
   defaultMaterial: {fileID: 2100000, guid: 6c71bbe010a66c444968945b59402c80, type: 2}
   invincibleMaterial: {fileID: 2100000, guid: ee65af80aa416a04c98d55776622ea7a, type: 2}
+  shootGuyPrefab: {fileID: 0}
+  heart1: {fileID: 0}
+  heart2: {fileID: 0}
+  heart3: {fileID: 0}
+  heart4: {fileID: 0}
 --- !u!54 &348960845272799199
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -284,6 +289,21 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 0.6
   dashTrailColor: {r: 0, g: 1, b: 1, a: 1}
+  onDash:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8300000, guid: 14cfa66cf723849c689a29ede56beae8, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5308734452922795360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,8 +319,10 @@ MonoBehaviour:
   sword: {fileID: 7441568255718737272}
   swingDuration: 0.4
   swingCooldown: 2.5
-  swingAngle: 90
-  swingSpeed: 360
+  swordDistance: 1
+  onSwing:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7441568255718737272
 GameObject:
   m_ObjectHideFlags: 0
