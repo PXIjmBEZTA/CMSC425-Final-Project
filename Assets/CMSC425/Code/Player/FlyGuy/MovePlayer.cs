@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
@@ -26,6 +27,8 @@ public class MovePlayer : MonoBehaviour
     private TrailRenderer dashTrail;
 
     private TakeDamage takeDamageScript;
+    public UnityEvent onDash; //<-- unity event for audio
+
 
     void Start()
     {
@@ -54,14 +57,24 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
-        HandleDash();
+        if (!isDashing && Time.time >= nextDashReadyTime && dashKeyCtrl.wasPressedThisFrame)
+        {
+            HandleDashA();
+            onDash.Invoke(); //
+        }
+
+        if (isDashing && Time.time >= dashEndTime)
+        {
+            HandleDashB();
+        }
+        
         HandleMovement();
     }
 
-    void HandleDash()
+    void HandleDashA()
     {
-        if (!isDashing && Time.time >= nextDashReadyTime && dashKeyCtrl.wasPressedThisFrame)
-        {
+
+        
             isDashing = true;
             dashEndTime = Time.time + dashDuration;
             speed *= dashMultiplier;
@@ -70,13 +83,18 @@ public class MovePlayer : MonoBehaviour
             takeDamageScript.ActivateTemporaryInvincibility(dashDuration);
         }
 
-        if (isDashing && Time.time >= dashEndTime)
-        {
+        
+    
+    
+
+    void HandleDashB()
+    {
+        
             isDashing = false;
             speed /= dashMultiplier;
             dashTrail.emitting = false; // turn off trail
             nextDashReadyTime = Time.time + dashCooldown;
-        }
+        
     }
 
     void HandleMovement()
@@ -91,7 +109,6 @@ public class MovePlayer : MonoBehaviour
         {
             move.Normalize();
             transform.Translate(move * speed * Time.deltaTime, Space.World);
-       
         }
 
         //delta = playerWidth / 2. playerWidth = 0.2 (currently)

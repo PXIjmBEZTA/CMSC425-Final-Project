@@ -289,6 +289,21 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 0.6
   dashTrailColor: {r: 0, g: 1, b: 1, a: 1}
+  onDash:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8300000, guid: 14cfa66cf723849c689a29ede56beae8, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5308734452922795360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +320,9 @@ MonoBehaviour:
   swingDuration: 0.4
   swingCooldown: 2.5
   swordDistance: 1
+  onSwing:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7441568255718737272
 GameObject:
   m_ObjectHideFlags: 0

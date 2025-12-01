@@ -19,12 +19,21 @@ public class EnemyBomb : MonoBehaviour
         float startAngle = 0;
 
         yield return new WaitForSeconds(bombTimer);
+
+        // Play ONE explosion sound here
+        AudioManager.Instance.Play(AudioManager.SoundType.BombExplode);
+
         for (int i = 0; i < bulletCount; i++)
         {
             float angle = startAngle + angleStep * i;
             Quaternion rotation = transform.rotation * Quaternion.Euler(0, angle, 0);
 
             GameObject bullet = Instantiate(bulletPrefab, gameObject.transform.position, rotation);
+
+            //Telling the bullet not to play its own sound (bullet sfx would stack otherwise, sounding loud and sharp)
+            EnemyBullet bulletScript = bullet.GetComponent<EnemyBullet>();
+            if (bulletScript != null)
+                bulletScript.SuppressSound = true;
         }
         Destroy(gameObject);
     }

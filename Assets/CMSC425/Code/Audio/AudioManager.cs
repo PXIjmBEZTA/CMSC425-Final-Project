@@ -9,7 +9,15 @@ public class AudioManager : MonoBehaviour
         BigShoot,
         Shoot,
         Music_Menu,
-        Music_Battle
+        Music_Battle,
+        Dash,
+
+        EnemyShoot,
+        BombExplode,
+
+        Damage,
+
+        SwingSword
         // Add more sound types as needed
     }
 

@@ -13,7 +13,7 @@ public class MovePlayer_old : MonoBehaviour
     KeyControl forwardKey;
     KeyControl backwardKey;
     KeyControl leftKey;
-    KeyControl rightKey;   
+    KeyControl rightKey;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -18,7 +18,9 @@ public class PlayerShoot : MonoBehaviour
 
     public float counter = 0f;
 
-    public UnityEvent onShoot;
+    public UnityEvent onShoot; //add unity events and later invoke them in the methods
+    //(they will allow us to drag sounds to its field in the inspector view)
+    //(make sure to import `using UnityEngine.Events;`)
     public UnityEvent onBigShoot;
 
     private void Start()

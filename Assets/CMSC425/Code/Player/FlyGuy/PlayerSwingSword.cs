@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
@@ -15,6 +16,10 @@ public class PlayerSwingSword : MonoBehaviour
     public ButtonControl swordButton;
     public KeyControl secondSwordButton;
 
+    public ButtonControl shootButton;
+
+
+    public UnityEvent onSwing;
 
     private bool isSwinging = false;
     private float nextSwingTime = 0f;
@@ -50,7 +55,9 @@ public class PlayerSwingSword : MonoBehaviour
         if ((swordButton.isPressed || secondSwordButton.isPressed) && !isSwinging && Time.time >= nextSwingTime)
         {
             StartCoroutine(SwingSword());
+            onSwing.Invoke();
         }
+
     }
 
     private IEnumerator SwingSword()
