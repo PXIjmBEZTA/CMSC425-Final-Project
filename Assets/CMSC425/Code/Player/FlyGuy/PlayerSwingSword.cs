@@ -13,19 +13,22 @@ public class PlayerSwingSword : MonoBehaviour
 
     [Header("Controls")]
     public ButtonControl swordButton;
+    public KeyControl secondSwordButton;
 
 
     private bool isSwinging = false;
     private float nextSwingTime = 0f;
     private Quaternion startRotation;
     private TrailRenderer trail;
+    private int swordDirection = 1; //1 means CW, -1 means CCW
     void Start()
     {
         startRotation = sword.transform.localRotation;
         swordButton = Mouse.current.rightButton;
+        secondSwordButton = Keyboard.current[Key.K];
         if (sword == null)
             Debug.LogWarning("Sword is not assigned! - PlayerSwingSword");
-        sword.transform.localPosition = new Vector3(0, 0, swordDistance);
+        sword.transform.localPosition = new Vector3(0, 0, -swordDistance); //swing from back to front clockwise
         sword.transform.localRotation = Quaternion.identity;
         sword.SetActive(false);
 
@@ -42,9 +45,9 @@ public class PlayerSwingSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (swordButton == null) return;
+        //if (swordButton == null) return;
 
-        if (swordButton.isPressed && !isSwinging && Time.time >= nextSwingTime)
+        if ((swordButton.isPressed || secondSwordButton.isPressed) && !isSwinging && Time.time >= nextSwingTime)
         {
             StartCoroutine(SwingSword());
         }
@@ -63,14 +66,13 @@ public class PlayerSwingSword : MonoBehaviour
         while (elapsed < swingDuration)
         {
             elapsed += Time.deltaTime;
-            float anglePerSecond = 360 / swingDuration;
-
+            float anglePerSecond = 360 * swordDirection / swingDuration;
             sword.transform.RotateAround(transform.position, Vector3.up, anglePerSecond * Time.deltaTime);
             yield return null;
         }
-
+        swordDirection = -swordDirection; //swap directions
         trail.enabled = false;
-        sword.transform.localPosition = new Vector3(0, 0, swordDistance);
+        sword.transform.localPosition = new Vector3(0, 0, -swordDistance);
         sword.transform.localRotation = startRotation;
         sword.SetActive(false);
         isSwinging = false;

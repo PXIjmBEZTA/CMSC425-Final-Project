@@ -36,6 +36,7 @@ public class TakeDamage : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+
         if (isRespawning || isInvincible)
             return;
         IEnemyProjectile projectile = other.GetComponent<IEnemyProjectile>();
