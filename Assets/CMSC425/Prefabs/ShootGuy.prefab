@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 348960845272799199}
   - component: {fileID: 4470026448742821408}
   - component: {fileID: -7829078874008215234}
+  - component: {fileID: 347466004700330465}
   m_Layer: 6
   m_Name: ShootGuy
   m_TagString: Untagged
@@ -261,3 +262,22 @@ MonoBehaviour:
   jumpKey: 1
   jumpHeight: 2
   jumpDuration: 1
+--- !u!114 &347466004700330465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4016442617397004774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661a5d30cd08cb6409a2e0a665f05472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invincibilityDuration: 2
+  maxLives: 3
+  speedReductionWhenInvincible: 0.5
+  defaultMaterial: {fileID: 2100000, guid: 6c71bbe010a66c444968945b59402c80, type: 2}
+  invincibleMaterial: {fileID: 2100000, guid: ee65af80aa416a04c98d55776622ea7a, type: 2}
+  heartsParent: {fileID: 0}
+  heartPrefab: {fileID: 157725777058936333, guid: 6cc116dcd8f26a24fa24d60feac04453, type: 3}
