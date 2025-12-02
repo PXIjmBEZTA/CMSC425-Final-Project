@@ -206,10 +206,10 @@ GameObject:
   - component: {fileID: 1563590351168924430}
   - component: {fileID: 5628121461840835669}
   - component: {fileID: 513368764772368221}
-  - component: {fileID: 8741845527156748691}
   - component: {fileID: 3941956763844412950}
   - component: {fileID: 7455342481885485160}
   - component: {fileID: 2641546602048769942}
+  - component: {fileID: 5484700928262120919}
   m_Layer: 0
   m_Name: ShieldEnemy
   m_TagString: ShieldBarrier
@@ -286,29 +286,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8741845527156748691
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5879474164898494785}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3941956763844412950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,3 +342,24 @@ MonoBehaviour:
   barrierCooldown: 10
   reflectiveBarrierPrefab: {fileID: 6239016758726006111, guid: 16aa60c7c547c2da9b695786135b5167, type: 3}
   reflectiveBarrierCooldown: 9
+--- !u!65 &5484700928262120919
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5879474164898494785}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
