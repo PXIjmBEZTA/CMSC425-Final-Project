@@ -100,7 +100,7 @@ public class ShootGuyTakeDamage : MonoBehaviour
     IEnumerator Die()
     {
         Destroy(gameObject);
-        Debug.Log("GAME OVER!!!!!");
+        GameManager.Instance.OnPlayerFinalDeath();
         yield return null;
     }
 

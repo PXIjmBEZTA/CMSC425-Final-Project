@@ -58,6 +58,7 @@ public class EnemyTakeDamage : MonoBehaviour
 
     private void Die()
     {
+        GameManager.Instance.OnEnemyDeath(gameObject.GetComponent<IEnemy>());
         Destroy(gameObject);
         //potentially we will want it to explode 
     }

@@ -11,6 +11,8 @@ public class Shotgun : MonoBehaviour, IEnemy
     private bool canShoot = true;
 
     public int HP { get; set; } = 200; //change HP later if needed
+    public EnemyRole role { get; set; } = EnemyRole.Vanguard;
+
     private void Start()
     {
         shootCooldown = 2f;

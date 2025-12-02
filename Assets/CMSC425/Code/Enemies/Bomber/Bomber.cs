@@ -12,6 +12,7 @@ public class Bomber : MonoBehaviour, IEnemy
 
     public int HP { get; set; } = 150;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public EnemyRole role { get; set; } = EnemyRole.Vanguard;
     void Start()
     {
         StartCoroutine(InitialStall());
