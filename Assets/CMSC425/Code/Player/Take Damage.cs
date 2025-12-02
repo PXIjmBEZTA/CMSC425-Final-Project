@@ -62,7 +62,7 @@ public class TakeDamage : MonoBehaviour
         //future notes for myself: ^this block was accidentally duplicated, causing 2 lives to be taken instead of one (deleted now)
     }
 
-    IEnumerator Respawn() //This is not used anymore. 
+    IEnumerator Respawn() 
     {
         isRespawning = true;
         GetComponent<Collider>().enabled = false;        // disable collisions
