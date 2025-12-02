@@ -35,6 +35,7 @@ public class TakeDamage : MonoBehaviour
         lives = maxLives;
         startPosition = transform.position;
         startRotation = transform.rotation;
+
     }
     void OnTriggerEnter(Collider other)
     {
@@ -69,11 +70,11 @@ public class TakeDamage : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = false;    // hide player visuals
         GetComponent<MovePlayer>().enabled = false;
         GetComponent<PlayerShoot>().enabled = false;
-
+        heart4.DestroyHeart(); //because ShootGuy has 3 lives
         yield return new WaitForSeconds(respawnDelay); //this is a delay before continuing code
 
         Vector3 shootGuyStartPos = startPosition;
-        shootGuyStartPos.z = -11 + 0.1f; //the +0.1f is accounting for the player's size
+        //shootGuyStartPos.z = -11 + 0.1f; //the +0.1f is accounting for the player's size
 
         Instantiate(shootGuyPrefab, shootGuyStartPos, startRotation);
         Destroy(gameObject);

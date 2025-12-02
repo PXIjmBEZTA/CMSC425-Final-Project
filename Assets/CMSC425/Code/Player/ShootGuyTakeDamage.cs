@@ -11,7 +11,7 @@ public class ShootGuyTakeDamage : MonoBehaviour
     private bool isInvincible = false;
     public int maxLives = 3;
     private int lives;
-    private MovePlayer player;
+    private MoveShootGuy player;
     public float speedReductionWhenInvincible = 0.5f;
 
     [Header("Invincibility Flashing")]
@@ -21,24 +21,25 @@ public class ShootGuyTakeDamage : MonoBehaviour
 
 
     [Header("UI")]
-    public GameObject heartsParent;
-    public GameObject heartPrefab;
-    private PlayerHeartUI heart1;
-    private PlayerHeartUI heart2;
+    public PlayerHeartUI heart1; //leftmost heart
+    public PlayerHeartUI heart2;
+    public PlayerHeartUI heart3; //rightmost heart
+
+    public UIShaker uiShaker;
 
     private void Start()
     {
-        player = GetComponent<MovePlayer>();
+        player = GetComponent<MoveShootGuy>();
         lives = maxLives;
         startPosition = transform.position;
         startRotation = transform.rotation;
 
-        GameObject h1 = Instantiate(heartPrefab, heartsParent.transform);
-        GameObject h2 = Instantiate(heartPrefab, heartsParent.transform);
-
-        heart1 = h1.GetComponent<PlayerHeartUI>();
-        heart2 = h2.GetComponent<PlayerHeartUI>();
-
+        StartCoroutine(TemporaryInvincibility(invincibilityDuration));
+        
+        
+        heart1.SetFull();
+        heart2.SetFull();
+        heart3.SetFull();
     }
     void OnTriggerEnter(Collider other)
     {
@@ -50,6 +51,11 @@ public class ShootGuyTakeDamage : MonoBehaviour
         if (projectile != null) //if hit by an enemy projectile
         {
             lives -= 1; //lose a life
+            if (uiShaker != null) //and added shake
+            {
+                uiShaker.Shake();
+            }
+
             projectile.OnHit(gameObject);
             Debug.Log($"I took damage! I have {lives} lives left!");
             StartCoroutine(UpdateHearts());
@@ -94,6 +100,7 @@ public class ShootGuyTakeDamage : MonoBehaviour
     IEnumerator Die()
     {
         Destroy(gameObject);
+        Debug.Log("GAME OVER!!!!!");
         yield return null;
     }
 
@@ -113,10 +120,25 @@ public class ShootGuyTakeDamage : MonoBehaviour
 
     private IEnumerator UpdateHearts()
     {
-        if (lives <= 1)
-            heart2.DestroyHeart();
-        if (lives == 0)
-            heart1.DestroyHeart();
+        AudioManager.Instance.Play(AudioManager.SoundType.Damage);
+
+        if (lives == 2 && heart3 != null)
+        {
+            // Debug.Log("Setting heart3 empty");
+            heart3.SetEmpty();
+        }
+        if (lives == 1 && heart2 != null)
+        {
+            // Debug.Log("Setting heart2 empty");
+            heart2.SetEmpty();
+        }
+        if (lives == 0 && heart1 != null)
+        {
+            // Debug.Log("Setting heart1 empty");
+            heart1.SetEmpty();
+            if (uiShaker != null)
+                uiShaker.SetDeadSprite();
+        }
         yield return null;
     }
 }
