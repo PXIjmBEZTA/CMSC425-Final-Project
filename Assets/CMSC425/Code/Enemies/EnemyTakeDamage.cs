@@ -23,19 +23,27 @@ public class EnemyTakeDamage : MonoBehaviour
         z_scale = hpBarFill.transform.localScale.z;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (enemy == null) return;
+  private void OnTriggerEnter(Collider other)
+{
+    if (enemy == null) return;
 
-        IPlayerBullet bullet = other.GetComponent<IPlayerBullet>();
-        
-        if (bullet != null)
+    IPlayerBullet bullet = other.GetComponent<IPlayerBullet>();
+    if (bullet != null)
+    {
+        // Check for barrier 
+        BarrierShield barrier = GetComponent<BarrierShield>();
+        if (barrier != null)
         {
-            int damage = bullet.Damage;
-            ApplyDamage(damage);
+            barrier.TakeDamage();
             Destroy(other.gameObject);
+            return;
         }
+
+        int damage = bullet.Damage;
+        ApplyDamage(damage);
+        Destroy(other.gameObject);
     }
+}
 
     private void ApplyDamage(int damage)
     {
