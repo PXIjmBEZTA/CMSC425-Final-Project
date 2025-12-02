@@ -33,8 +33,9 @@ public class GameManager : MonoBehaviour
     public bool supportIsFull = false;
 
     private int numVanguardEnemies = 0;
-    private int numSupportEnemies = 0;
-    private int maxEnemiesPerRow = 0; //will be either 1, 2, or 3.
+    private int numSupportEnemies = 0; 
+    private int maxVanguardEnemies = 0; //either 1, 2, or 3
+    private int maxSupportEnemies = 0; //either 1, 2, or 3
     private void Awake()
     {
         if (Instance == null)
@@ -46,10 +47,12 @@ public class GameManager : MonoBehaviour
     
 
     //Called once when the combat begins
-    public void InitiateCombat(IEnemy[] initialEnemies, int enemiesPerRow)
+    public void InitiateCombat(IEnemy[] initialEnemies, int maxVanguard, int maxSupport)
     {
+
+        maxVanguardEnemies = maxVanguard;
+        maxSupportEnemies = maxSupport;
         
-        maxEnemiesPerRow = enemiesPerRow;
         enemies.Clear();
         numVanguardEnemies = 0;
         numSupportEnemies = 0;
@@ -123,8 +126,8 @@ public class GameManager : MonoBehaviour
             positions = new Vector3[] { supportLeftSpawnPoint, supportCenterSpawnPoint, supportRightSpawnPoint };
 
         int[] order;
-
-        switch(maxEnemiesPerRow)
+        int maxEnemiesInRow = (role == EnemyRole.Vanguard) ? maxVanguardEnemies : maxSupportEnemies;
+        switch(maxEnemiesInRow)
         {
             case 1:
                 order = new int[] { 1 }; //spawn only center!

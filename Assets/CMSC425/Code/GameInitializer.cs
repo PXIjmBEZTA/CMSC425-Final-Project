@@ -5,7 +5,10 @@ public class GameInitializer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public GameObject[] enemyPrefabs;
-    public int numEnemiesPerRow = 3;
+
+    [Header("Enemy Numbers")]
+    public int numVanguards = 2;
+    public int numSupports = 1;
 
     void Start()
     {
@@ -14,7 +17,7 @@ public class GameInitializer : MonoBehaviour
         {
             enemies[i] = enemyPrefabs[i].GetComponent<IEnemy>();
         }
-        GameManager.Instance.InitiateCombat(enemies, numEnemiesPerRow);
+        GameManager.Instance.InitiateCombat(enemies, numVanguards, numSupports);
     }
 
 }
