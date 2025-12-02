@@ -19,12 +19,12 @@ public class GameManager : MonoBehaviour
 
     private List<IEnemy> enemies = new List<IEnemy>(0); //list of all enemies currently in combat.
 
-    private Vector3 vanguardCenterSpawnPoint = new Vector3(0, 0.125f, -4);
-    private Vector3 vanguardLeftSpawnPoint = new Vector3(-3.5f, 0.125f, -4);
-    private Vector3 vanguardRightSpawnPoint = new Vector3(3.5f, 0.125f, -4);
-    private Vector3 supportCenterSpawnPoint = new Vector3(0, 0.125f, -6);
-    private Vector3 supportLeftSpawnPoint = new Vector3(-3.5f, 0.125f, -6);
-    private Vector3 supportRightSpawnPoint = new Vector3(3.5f, 0.125f, -6);
+    private Vector3 vanguardCenterSpawnPoint = new Vector3(0, 0.125f, -6); 
+    private Vector3 vanguardLeftSpawnPoint = new Vector3(-3.5f, 0.125f, -6);
+    private Vector3 vanguardRightSpawnPoint = new Vector3(3.5f, 0.125f, -6);
+    private Vector3 supportCenterSpawnPoint = new Vector3(0, 0.125f, -4);
+    private Vector3 supportLeftSpawnPoint = new Vector3(-3.5f, 0.125f, -4);
+    private Vector3 supportRightSpawnPoint = new Vector3(3.5f, 0.125f, -4);
     private Quaternion startRotation = Quaternion.Euler(0, 180, 0);
     private IEnemy[] vanguardEnemies = new IEnemy[3];
     private IEnemy[] supportEnemies = new IEnemy[3];
