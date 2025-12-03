@@ -10,7 +10,7 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     [Header("Reflective Barrier")]
     public GameObject reflectiveBarrierPrefab;
-    public float reflectiveBarrierCooldown = 9f;
+    public float reflectiveBarrierCooldown = 15f;
 
     public int HP { get; set; } = 100;
     public EnemyRole role { get; set; } = EnemyRole.Support;
@@ -19,11 +19,13 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     void Start()
     {
-        StartCoroutine(GiveBarriers());
-        StartCoroutine(SpawnReflectiveBarriers());
+        StartCoroutine(Behavior1());
+        StartCoroutine(Behavior2());
+        StartCoroutine(Behavior3());
     }
 
-    IEnumerator GiveBarriers()
+    // Behavior1: Give shields to other enemies (loops forever)
+    public IEnumerator Behavior1()
     {
         yield return new WaitForSeconds(3f);
 
@@ -57,82 +59,107 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
         }
     }
 
-    IEnumerator SpawnReflectiveBarriers()
+    // Behavior2: Spawn reflective (purple) barriers (loops forever)
+    public IEnumerator Behavior2()
     {
         yield return new WaitForSeconds(5f);
 
         while (true)
         {
-            if (reflectiveBarrierPrefab == null)
+            if (reflectiveBarrierPrefab != null)
             {
-                yield return new WaitForSeconds(reflectiveBarrierCooldown);
-                continue;
-            }
+                float minX = -5.5f;
+                float maxX = 5.5f;
+                float minZ = -10.5f;
+                float maxZ = -7.5f;
 
-            // Player movement area
-            float minX = -5.5f;
-            float maxX = 5.5f;
-            float minZ = -10.5f;
-            float maxZ = -7.5f;
+                float randomX = Random.Range(minX + 1f, maxX - 1f);
+                float randomZ = Random.Range(minZ + 1f, maxZ - 1f);
+                float y = 0.4f;
 
-            float randomX = Random.Range(minX + 1f, maxX - 1f);
-            float randomZ = Random.Range(minZ + 1f, maxZ - 1f);
-            float y = 0.4f;
+                Vector3 spawnPos = new Vector3(randomX, y, randomZ);
 
-            Vector3 spawnPos = new Vector3(randomX, y, randomZ);
+                GameObject barrier = Instantiate(reflectiveBarrierPrefab, spawnPos, Quaternion.identity);
+                barrier.tag = "ShieldBarrier";
+                barrier.transform.localScale = new Vector3(1.5f, 0.8f, 0.15f);
 
-            GameObject barrier = Instantiate(reflectiveBarrierPrefab, spawnPos, Quaternion.identity);
-            barrier.tag = "ShieldBarrier";
-            barrier.transform.localScale = new Vector3(1.5f, 0.8f, 0.15f);
+                BoxCollider box = barrier.GetComponent<BoxCollider>();
+                if (box != null)
+                {
+                    box.size = new Vector3(1f, 1f, 3f);
+                }
 
-            BoxCollider box = barrier.GetComponent<BoxCollider>();
-            if (box != null)
-            {
-                box.size = new Vector3(1f, 1f, 3f);
-            }
+                Collider col = barrier.GetComponent<Collider>();
+                if (col != null)
+                {
+                    col.isTrigger = true;
+                }
 
-            Collider col = barrier.GetComponent<Collider>();
-            if (col != null)
-            {
-                col.isTrigger = true;
-            }
+                Rigidbody rb = barrier.AddComponent<Rigidbody>();
+                rb.useGravity = false;
+                rb.isKinematic = true;
 
-            Rigidbody rb = barrier.AddComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.isKinematic = true;
-
-            if (Random.value < 0.5f)
-            {
-                barrier.AddComponent<SimpleBarrier>();
-                barrier.AddComponent<BarrierPulse>().SetColors(new Color(1f, 0.6f, 0f), new Color(1f, 0.8f, 0.2f));
-            }
-            else
-            {
                 barrier.AddComponent<ReflectiveBarrier>();
                 barrier.AddComponent<BarrierPulse>().SetColors(new Color(0.6f, 0f, 1f), new Color(1f, 0f, 1f));
+                Debug.Log($"[SPAWN] Reflective barrier at {spawnPos}");
             }
 
             yield return new WaitForSeconds(reflectiveBarrierCooldown);
         }
     }
 
-    public IEnumerator Behavior1()
-    {
-        yield return null;
-    }
-
-    public IEnumerator Behavior2()
-    {
-        yield return null;
-    }
-
+    // Behavior3: Spawn absorbing (orange) barriers (loops forever)
     public IEnumerator Behavior3()
     {
-        yield return null;
+        yield return new WaitForSeconds(7f);
+
+        while (true)
+        {
+            if (reflectiveBarrierPrefab != null)
+            {
+                float minX = -5.5f;
+                float maxX = 5.5f;
+                float minZ = -10.5f;
+                float maxZ = -7.5f;
+
+                float randomX = Random.Range(minX + 1f, maxX - 1f);
+                float randomZ = Random.Range(minZ + 1f, maxZ - 1f);
+                float y = 0.4f;
+
+                Vector3 spawnPos = new Vector3(randomX, y, randomZ);
+
+                GameObject barrier = Instantiate(reflectiveBarrierPrefab, spawnPos, Quaternion.identity);
+                barrier.tag = "ShieldBarrier";
+                barrier.transform.localScale = new Vector3(1.5f, 0.8f, 0.15f);
+
+                BoxCollider box = barrier.GetComponent<BoxCollider>();
+                if (box != null)
+                {
+                    box.size = new Vector3(1f, 1f, 3f);
+                }
+
+                Collider col = barrier.GetComponent<Collider>();
+                if (col != null)
+                {
+                    col.isTrigger = true;
+                }
+
+                Rigidbody rb = barrier.AddComponent<Rigidbody>();
+                rb.useGravity = false;
+                rb.isKinematic = true;
+
+                barrier.AddComponent<SimpleBarrier>();
+                barrier.AddComponent<BarrierPulse>().SetColors(new Color(1f, 0.6f, 0f), new Color(1f, 0.8f, 0.2f));
+                Debug.Log($"[SPAWN] Absorbing barrier at {spawnPos}");
+            }
+
+            yield return new WaitForSeconds(reflectiveBarrierCooldown);
+        }
     }
 
     void OnDestroy()
     {
+        // Remove shields from enemies
         foreach (GameObject enemy in shieldedEnemies)
         {
             if (enemy != null)
@@ -140,11 +167,12 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
                 BarrierShield barrier = enemy.GetComponent<BarrierShield>();
                 if (barrier != null)
                 {
-                    Destroy(barrier);
+                    barrier.DestroyShield();
                 }
             }
         }
 
+        // Remove all battlefield barriers
         GameObject[] barriers = GameObject.FindGameObjectsWithTag("ShieldBarrier");
         foreach (GameObject b in barriers)
         {
