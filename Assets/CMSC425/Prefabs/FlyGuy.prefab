@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 5308734452922795360}
   m_Layer: 6
   m_Name: FlyGuy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   heart2: {fileID: 0}
   heart3: {fileID: 0}
   heart4: {fileID: 0}
+  uiShaker: {fileID: 0}
 --- !u!54 &348960845272799199
 Rigidbody:
   m_ObjectHideFlags: 0
