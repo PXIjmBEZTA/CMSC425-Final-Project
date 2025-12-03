@@ -76,7 +76,10 @@ public class TakeDamage : MonoBehaviour
         Vector3 shootGuyStartPos = startPosition;
         //shootGuyStartPos.z = -11 + 0.1f; //the +0.1f is accounting for the player's size
 
-        Instantiate(shootGuyPrefab, shootGuyStartPos, startRotation);
+        GameObject go = Instantiate(shootGuyPrefab, shootGuyStartPos, startRotation);
+
+        ShootGuyTakeDamage dmg = go.GetComponent<ShootGuyTakeDamage>();
+        dmg.Init(heart1, heart2, heart3, uiShaker);
         Destroy(gameObject);
     }
 
