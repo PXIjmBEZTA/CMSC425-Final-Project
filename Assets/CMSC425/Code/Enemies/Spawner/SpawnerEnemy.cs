@@ -17,7 +17,7 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
 
     private List<GameObject> spawnedEnemies = new List<GameObject>();
     private bool canAct = false;
-    private GameObject lastSpawnedPrefab = null;
+    //private GameObject lastSpawnedPrefab = null;
 
     void Start()
     {
