@@ -34,6 +34,8 @@ public class MoveShootGuy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PauseGame.isPaused) return;
+
         HandleMovement();
         HandleJump();
     }

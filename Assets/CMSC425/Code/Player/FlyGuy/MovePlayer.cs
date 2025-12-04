@@ -57,6 +57,8 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
+        if (PauseGame.isPaused) return;
+
         if (!isDashing && Time.time >= nextDashReadyTime && dashKeyCtrl.wasPressedThisFrame)
         {
             HandleDashA();
