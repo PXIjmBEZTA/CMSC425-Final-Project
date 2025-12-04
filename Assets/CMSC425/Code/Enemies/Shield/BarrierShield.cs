@@ -18,12 +18,17 @@ public class BarrierShield : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log($"[BARRIER] {gameObject.name} barrier destroyed!");
-            if (visual != null)
-            {
-                Destroy(visual);
-            }
-            Destroy(this);
+            DestroyShield();
         }
+    }
+
+    public void DestroyShield()
+    {
+        if (visual != null)
+        {
+            Destroy(visual);
+        }
+        Destroy(this);
     }
 
     void OnDestroy()
