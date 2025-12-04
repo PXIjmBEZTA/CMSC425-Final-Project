@@ -5,19 +5,13 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-
-//This script is responsible for initiating battles and win/loss conditions.
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-   
-
-
     private bool gameOver = false;
 
-    private List<IEnemy> enemies = new List<IEnemy>(0); //list of all enemies currently in combat.
+    private List<IEnemy> enemies = new List<IEnemy>(0);
 
     private Vector3 vanguardCenterSpawnPoint = new Vector3(0, 0.125f, -6); 
     private Vector3 vanguardLeftSpawnPoint = new Vector3(-3.5f, 0.125f, -6);
@@ -34,8 +28,9 @@ public class GameManager : MonoBehaviour
 
     private int numVanguardEnemies = 0;
     private int numSupportEnemies = 0; 
-    private int maxVanguardEnemies = 0; //either 1, 2, or 3
-    private int maxSupportEnemies = 0; //either 1, 2, or 3
+    private int maxVanguardEnemies = 0;
+    private int maxSupportEnemies = 0;
+
     private void Awake()
     {
         if (Instance == null)
@@ -44,12 +39,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    
-
-    //Called once when the combat begins
     public void InitiateCombat(IEnemy[] initialEnemies, int maxVanguard, int maxSupport)
     {
-
         maxVanguardEnemies = maxVanguard;
         maxSupportEnemies = maxSupport;
         
@@ -62,7 +53,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //This will spawn the enemy at full health, and will give them correct starting locations
     private IEnumerator SpawnEnemy(IEnemy enemy)
     {
         yield return new WaitForSeconds(0.25f);
@@ -70,12 +60,10 @@ public class GameManager : MonoBehaviour
         int index = (enemy.role == EnemyRole.Vanguard) ? numVanguardEnemies : numSupportEnemies;
         (Vector3 spawnPoint, int slotIndex) = GetBalancedSpawnPoint(enemy.role, index);
 
-
         GameObject instance = GameObject.Instantiate(((MonoBehaviour)enemy).gameObject, spawnPoint, startRotation);
         IEnemy enemyInstance = instance.GetComponent<IEnemy>();
         enemies.Add(enemyInstance);
 
-        // Update the row array
         if (enemy.role == EnemyRole.Vanguard)
         {
             vanguardEnemies[slotIndex] = enemyInstance; 
@@ -88,12 +76,8 @@ public class GameManager : MonoBehaviour
             numSupportEnemies++;
             supportIsFull = IsRowFull(supportEnemies);
         }
-
-
     }
 
-
-    //When an enemy dies, the enemy list is updated
     public void OnEnemyDeath(IEnemy enemy)
     {
         enemies.Remove(enemy);
@@ -102,18 +86,23 @@ public class GameManager : MonoBehaviour
             RemoveEnemyFromRow(vanguardEnemies, enemy);
             vanguardIsFull = false;
         }
-        else //suport enemy
+        else
         {
             RemoveEnemyFromRow(supportEnemies, enemy);
             supportIsFull = false;
         }
 
-
-
         if (enemies.Count == 0 && !gameOver)
         {
             Debug.Log("Yippee! You win!");
-            //Win();
+        }
+    }
+
+    public void RegisterSpawnedEnemy(IEnemy enemy)
+    {
+        if (!enemies.Contains(enemy))
+        {
+            enemies.Add(enemy);
         }
     }
 
@@ -130,21 +119,22 @@ public class GameManager : MonoBehaviour
         switch(maxEnemiesInRow)
         {
             case 1:
-                order = new int[] { 1 }; //spawn only center!
+                order = new int[] { 1 };
                 break;
             case 2:
-                order = new int[] { 0, 2 }; //spawn left and right!
+                order = new int[] { 0, 2 };
                 break;
             case 3:
-                order = new int[] { 1, 0, 2 }; //spawn center, then left, then right
+                order = new int[] { 1, 0, 2 };
                 break;
             default:
                 Debug.Log("There cannot be more than 3 max-enemies per row!");
-                order = new int[] { 1, 0, 2 }; //spawn center, then left, then right
+                order = new int[] { 1, 0, 2 };
                 break;
         }
         return (positions[order[index]], order[index]);
     }
+
     private void RemoveEnemyFromRow(IEnemy[] row, IEnemy enemy)
     {
         for (int i = 0; i < row.Length; i++)
@@ -159,24 +149,19 @@ public class GameManager : MonoBehaviour
 
     private bool IsRowFull(IEnemy[] row)
     {
-        for (int i = 0;i < row.Length;i++)
+        for (int i = 0; i < row.Length; i++)
         {
             if (row[i] == null)
                 return false;
         }
         return true;
     }
-    //Loss condition. When Player dies, Game Over Screen!
+
     public void OnPlayerFinalDeath()
     {
         if (gameOver) return;
 
         gameOver = true;
         Debug.Log("GAME OVER! Player has no lives remaining.");
-            //Lose();
-        // You can add UI logic here later:
-        // ShowGameOverPanel();
-        // Stop enemy spawns
-        // Freeze game
     }
 }
