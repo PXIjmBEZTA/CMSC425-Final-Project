@@ -31,9 +31,13 @@ public class MoveShootGuy : MonoBehaviour
         leftKey = kb[leftMove];
         rightKey = kb[rightMove];
         jumpKeyCtrl = kb[jumpKey];
-        animator = GetComponent<Animator>();
     }
 
+    
+    public void Init(Animator a) //This is necessary because shootGuy is a prefab
+    {
+        animator = a;
+    }
     // Update is called once per frame
     void Update()
     {

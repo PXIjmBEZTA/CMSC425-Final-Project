@@ -19,9 +19,13 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     void Start()
     {
-        StartCoroutine(Behavior1());
-        StartCoroutine(Behavior2());
-        StartCoroutine(Behavior3());
+        int behavior = Random.Range(1, 4);
+        if (behavior == 1)
+            StartCoroutine(Behavior1());
+        else if (behavior == 2)
+            StartCoroutine(Behavior2());
+        else if (behavior == 3)
+            StartCoroutine(Behavior3());
     }
 
     // Behavior1: Give shields to other enemies (loops forever)

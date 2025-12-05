@@ -20,6 +20,7 @@ public class TakeDamage : MonoBehaviour
     private float timeBetweenFlashes = 0.1f;
 
     public GameObject shootGuyPrefab;
+    public Animator shootGuyAnimation; //this is needed because we need a way to set the animator for the shootGuyPrefab
 
     [Header("UI")]
     public PlayerHeartUI heart1; //leftmost heart
@@ -28,7 +29,7 @@ public class TakeDamage : MonoBehaviour
     public PlayerHeartUI heart4; //rightmost heart
 
     public UIShaker uiShaker;
-
+    
     private void Start()
     {
         player = GetComponent<MovePlayer>();
@@ -78,8 +79,11 @@ public class TakeDamage : MonoBehaviour
 
         GameObject go = Instantiate(shootGuyPrefab, shootGuyStartPos, startRotation);
 
-        ShootGuyTakeDamage dmg = go.GetComponent<ShootGuyTakeDamage>();
-        dmg.Init(heart1, heart2, heart3, uiShaker);
+        ShootGuyTakeDamage takeDamageScript = go.GetComponent<ShootGuyTakeDamage>();
+        takeDamageScript.Init(heart1, heart2, heart3, uiShaker);
+
+        MoveShootGuy shootGuyMovement = go.GetComponent<MoveShootGuy>();
+        shootGuyMovement.Init(shootGuyAnimation);
         Destroy(gameObject);
     }
 
