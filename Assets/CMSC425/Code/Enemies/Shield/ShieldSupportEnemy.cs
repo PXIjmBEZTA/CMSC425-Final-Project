@@ -16,6 +16,7 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
     public EnemyRole role { get; set; } = EnemyRole.Support;
 
     private List<GameObject> shieldedEnemies = new List<GameObject>();
+    private List<GameObject> myBarriers = new List<GameObject>();
 
     void Start()
     {
@@ -26,38 +27,50 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     // Behavior1: Give shields to other enemies (loops forever)
     public IEnumerator Behavior1()
+{
+    yield return new WaitForSeconds(3f);
+
+    while (true)
     {
-        yield return new WaitForSeconds(3f);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Debug.Log($"[SHIELD] Found {enemies.Length} enemies with Enemy tag");
 
-        while (true)
+        foreach (GameObject enemy in enemies)
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-            foreach (GameObject enemy in enemies)
+            Debug.Log($"[SHIELD] Checking {enemy.name}");
+            
+            if (enemy == gameObject)
             {
-                if (enemy == gameObject) continue;
-                if (enemy.GetComponent<BarrierShield>() != null) continue;
-
-                BarrierShield barrier = enemy.AddComponent<BarrierShield>();
-                barrier.health = 3;
-
-                if (barrierPrefab != null)
-                {
-                    GameObject visual = Instantiate(barrierPrefab);
-                    visual.transform.SetParent(enemy.transform);
-                    visual.transform.localPosition = Vector3.forward * 0.8f;
-                    visual.transform.localRotation = Quaternion.identity;
-                    visual.transform.localScale = Vector3.one * 0.3f;
-                    barrier.SetVisual(visual);
-                }
-
-                shieldedEnemies.Add(enemy);
-                Debug.Log($"Gave barrier to {enemy.name}");
+                Debug.Log($"[SHIELD] Skipping self");
+                continue;
+            }
+            if (enemy.GetComponent<BarrierShield>() != null)
+            {
+                Debug.Log($"[SHIELD] {enemy.name} already has barrier");
+                continue;
             }
 
-            yield return new WaitForSeconds(barrierCooldown);
+            BarrierShield barrier = enemy.AddComponent<BarrierShield>();
+            barrier.health = 3;
+            barrier.owner = this;
+
+            if (barrierPrefab != null)
+            {
+                GameObject visual = Instantiate(barrierPrefab);
+                visual.transform.SetParent(enemy.transform);
+                visual.transform.localPosition = Vector3.forward * 0.8f;
+                visual.transform.localRotation = Quaternion.identity;
+                visual.transform.localScale = Vector3.one * 0.3f;
+                barrier.SetVisual(visual);
+            }
+
+            shieldedEnemies.Add(enemy);
+            Debug.Log($"[SHIELD] Gave barrier to {enemy.name}");
         }
+
+        yield return new WaitForSeconds(barrierCooldown);
     }
+}
 
     // Behavior2: Spawn reflective (purple) barriers (loops forever)
     public IEnumerator Behavior2()
@@ -101,6 +114,8 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
                 barrier.AddComponent<ReflectiveBarrier>();
                 barrier.AddComponent<BarrierPulse>().SetColors(new Color(0.6f, 0f, 1f), new Color(1f, 0f, 1f));
+                
+                myBarriers.Add(barrier);
                 Debug.Log($"[SPAWN] Reflective barrier at {spawnPos}");
             }
 
@@ -150,6 +165,8 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
                 barrier.AddComponent<SimpleBarrier>();
                 barrier.AddComponent<BarrierPulse>().SetColors(new Color(1f, 0.6f, 0f), new Color(1f, 0.8f, 0.2f));
+                
+                myBarriers.Add(barrier);
                 Debug.Log($"[SPAWN] Absorbing barrier at {spawnPos}");
             }
 
@@ -159,24 +176,26 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     void OnDestroy()
     {
-        // Remove shields from enemies
+        // Only remove shields that THIS ShieldEnemy created
         foreach (GameObject enemy in shieldedEnemies)
         {
             if (enemy != null)
             {
                 BarrierShield barrier = enemy.GetComponent<BarrierShield>();
-                if (barrier != null)
+                if (barrier != null && barrier.owner == this)
                 {
                     barrier.DestroyShield();
                 }
             }
         }
 
-        // Remove all battlefield barriers
-        GameObject[] barriers = GameObject.FindGameObjectsWithTag("ShieldBarrier");
-        foreach (GameObject b in barriers)
+        // Only remove barriers that THIS ShieldEnemy created
+        foreach (GameObject b in myBarriers)
         {
-            Destroy(b);
+            if (b != null)
+            {
+                Destroy(b);
+            }
         }
     }
 }

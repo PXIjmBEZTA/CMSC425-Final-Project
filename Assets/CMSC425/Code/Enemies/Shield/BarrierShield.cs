@@ -3,6 +3,7 @@ using UnityEngine;
 public class BarrierShield : MonoBehaviour
 {
     public int health = 3;
+    public ShieldSupportEnemy owner;
     private GameObject visual;
 
     public void SetVisual(GameObject vis)
