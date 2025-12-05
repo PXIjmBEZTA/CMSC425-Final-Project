@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016159b71a794b24cbc7ee01995d580c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseLabel: {fileID: 0}
+  pauseLabel: {fileID: 1595920726}
   pauseKeyCode: 0
 --- !u!4 &303157653
 Transform:
@@ -714,11 +714,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 2832338657569917519, guid: 0bae8cb3605c5514ca4e60ec787ee8e3, type: 3}
-  - {fileID: 8527527179400040136, guid: f2f69148647a5314394a06ecac640035, type: 3}
-  - {fileID: 5879474164898494785, guid: 2b0251e7cced6cfa48db0e5735cea752, type: 3}
-  numVanguards: 2
-  numSupports: 1
+  - {fileID: 2846717986981650497, guid: 36ba93e23038a5339b02e8cacc86bb0f, type: 3}
+  numVanguards: 3
+  numSupports: 3
 --- !u!4 &598344208
 Transform:
   m_ObjectHideFlags: 0
@@ -1314,7 +1312,7 @@ GameObject:
   - component: {fileID: 1595920727}
   - component: {fileID: 1595920726}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PausedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
