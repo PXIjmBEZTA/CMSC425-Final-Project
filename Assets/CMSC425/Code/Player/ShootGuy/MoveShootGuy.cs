@@ -21,6 +21,8 @@ public class MoveShootGuy : MonoBehaviour
     private float jumpTimer = 0;
     private float startZ;
 
+    public Animator animator;
+
     void Start()
     {
         Keyboard kb = Keyboard.current;
@@ -29,11 +31,14 @@ public class MoveShootGuy : MonoBehaviour
         leftKey = kb[leftMove];
         rightKey = kb[rightMove];
         jumpKeyCtrl = kb[jumpKey];
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (PauseGame.isPaused) return;
+
         HandleMovement();
         HandleJump();
     }
@@ -42,8 +47,22 @@ public class MoveShootGuy : MonoBehaviour
     void HandleMovement()
     {
         Vector3 move = Vector3.zero;
-        if (leftKey.isPressed) move += Vector3.left;
-        if (rightKey.isPressed) move += Vector3.right;
+        if (leftKey.isPressed)
+        {
+            move += Vector3.left;
+            animator.SetBool("isMoving", true);
+            animator.SetFloat("Direction", 1);
+        }
+        else if (rightKey.isPressed)
+        { 
+            move += Vector3.right;
+            animator.SetBool("isMoving", true);
+            animator.SetFloat("Direction", -1);
+        } 
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
 
         if (move.sqrMagnitude > 0f)
         {

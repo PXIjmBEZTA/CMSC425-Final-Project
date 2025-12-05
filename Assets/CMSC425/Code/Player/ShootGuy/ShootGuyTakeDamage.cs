@@ -41,6 +41,15 @@ public class ShootGuyTakeDamage : MonoBehaviour
         heart2.SetFull();
         heart3.SetFull();
     }
+
+    //This is necessary for the GameManager to manually set the UI elements.
+    public void Init(PlayerHeartUI h1, PlayerHeartUI h2, PlayerHeartUI h3, UIShaker shaker)
+    {
+        heart1 = h1;
+        heart2 = h2;
+        heart3 = h3;
+        uiShaker = shaker;
+    }
     void OnTriggerEnter(Collider other)
     {
 

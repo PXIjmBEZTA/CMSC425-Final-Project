@@ -1,0 +1,386 @@
+fileFormatVersion: 2
+guid: 05dc9b196c14546418b81fa14fb3fb72
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: flyidle
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 20
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: fly guy(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: arms
+      parentName: fly guy(Clone)
+      position: {x: -0.003309326, y: 0.034687933, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 2.0564148, y: 2.0564148, z: 2.0564148}
+    - name: left_arm
+      parentName: arms
+      position: {x: 0.021666266, y: -6.600423e-18, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: right_arm
+      parentName: arms
+      position: {x: 0.02198335, y: -6.600423e-18, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: real_shoot_guy:head_retop
+      parentName: fly guy(Clone)
+      position: {x: 0.000048762893, y: 0.035522766, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0141387, y: 0.8597895, z: 0.90124446}
+    - name: real_shoot_guy:body_retop
+      parentName: fly guy(Clone)
+      position: {x: 0.063353635, y: 0.034687933, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 2.0564148, y: 2.0564148, z: 2.0564148}
+    - name: legs
+      parentName: fly guy(Clone)
+      position: {x: 0.03745944, y: 0.034687933, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 2.0564148, y: 2.0564148, z: 2.0564148}
+    - name: right_leg
+      parentName: legs
+      position: {x: 0.0017589217, y: -4.440892e-18, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: left_leg
+      parentName: legs
+      position: {x: 0.0017589217, y: -4.440892e-18, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: real_shoot_guy:transform3
+      parentName: legs
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair_retop
+      parentName: fly guy(Clone)
+      position: {x: -0, y: 0.035162434, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.9686196, y: 1.9686196, z: 1.9686196}
+    - name: visor_retop
+      parentName: fly guy(Clone)
+      position: {x: -0, y: 0.03477978, z: 0.0007860781}
+      rotation: {x: -0.061953094, y: 0, z: -0, w: 0.99807906}
+      scale: {x: 1.941137, y: 1.941137, z: 1.941137}
+    - name: wings
+      parentName: fly guy(Clone)
+      position: {x: -0.0009826295, y: 0.035162434, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: wing_left_retop
+      parentName: wings
+      position: {x: -0, y: -0.035162434, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: wing_right_retop
+      parentName: wings
+      position: {x: -0, y: -0.035162434, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform2
+      parentName: wings
+      position: {x: -0, y: -0.035162434, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: real_shoot_guy:root
+      parentName: fly guy(Clone)
+      position: {x: -0.010720602, y: 0.019347135, z: -0.01700001}
+      rotation: {x: 0.4210355, y: 0.095772475, z: -0.20006049, w: 0.879507}
+      scale: {x: 1, y: 1, z: 1}
+    - name: nurbsCircle16
+      parentName: fly guy(Clone)
+      position: {x: -0.010720602, y: 0.019347135, z: -0.01700001}
+      rotation: {x: 0.4210355, y: 0.09577246, z: -0.20006049, w: 0.879507}
+      scale: {x: 1, y: 1, z: 1}
+    - name: body_curve
+      parentName: nurbsCircle16
+      position: {x: -0, y: 0.014132325, z: 0}
+      rotation: {x: 0, y: 0.034761414, z: -0, w: 0.99939567}
+      scale: {x: 1, y: 1, z: 1}
+    - name: nurbsCircle1
+      parentName: body_curve
+      position: {x: 5.447967e-19, y: 0.007558249, z: -9.992007e-18}
+      rotation: {x: -0.12232662, y: 0.053156883, z: -0.0065612667, w: 0.9910436}
+      scale: {x: 1, y: 1, z: 1}
+    - name: right_arm_curve
+      parentName: nurbsCircle1
+      position: {x: 0.00549004, y: 0.0040438077, z: 5.1070257e-17}
+      rotation: {x: 0, y: -0.61215216, z: -0, w: 0.79074}
+      scale: {x: 1, y: 1, z: 1}
+    - name: left_arm_curve
+      parentName: nurbsCircle1
+      position: {x: -0.00549004, y: 0.0040438366, z: 1.8873792e-17}
+      rotation: {x: 0, y: 0.6579752, z: -0, w: 0.7530396}
+      scale: {x: 1, y: 1, z: 1}
+    - name: right_wing_curve1
+      parentName: nurbsCircle1
+      position: {x: 0.00316302, y: 0.003264551, z: -0.00426939}
+      rotation: {x: 0.028941525, y: 0.29930982, z: -0.09179079, w: 0.94928944}
+      scale: {x: 1, y: 1, z: 1}
+    - name: left_wing_curve1
+      parentName: nurbsCircle1
+      position: {x: -0.0031630239, y: 0.003264551, z: -0.00426939}
+      rotation: {x: 0.028941574, y: -0.29930982, z: 0.091790944, w: 0.94928944}
+      scale: {x: 1, y: 1, z: 1}
+    - name: right_leg_curve
+      parentName: nurbsCircle16
+      position: {x: 0.004141641, y: 0.014686023, z: -2.3314683e-17}
+      rotation: {x: -0.28622293, y: 0.0222837, z: 0.07435199, w: 0.955014}
+      scale: {x: 1, y: 1, z: 1}
+    - name: left_leg_curve
+      parentName: nurbsCircle16
+      position: {x: -0.00414164, y: 0.014686023, z: 3.0531133e-18}
+      rotation: {x: 0.2519729, y: -0, z: -0, w: 0.96773434}
+      scale: {x: 1, y: 1, z: 1}
+    - name: real_shoot_guy:joint1
+      parentName: fly guy(Clone)
+      position: {x: -0.0046075745, y: 0.027337689, z: -0.007075066}
+      rotation: {x: -0.000000020160277, y: -0.0000000012298661, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1.0000007, y: 1.0000007, z: 1.0000001}
+    - name: real_shoot_guy:joint2
+      parentName: real_shoot_guy:joint1
+      position: {x: -0.0075582485, y: 3.330669e-18, z: 2.8893915e-10}
+      rotation: {x: -1.7763566e-15, y: 0.000000057363245, z: 7.9294545e-16, w: 1}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1}
+    - name: real_shoot_guy:joint3
+      parentName: real_shoot_guy:joint2
+      position: {x: -0.0066317534, y: -4.8849813e-17, z: 1.5522399e-10}
+      rotation: {x: -0.000000035707426, y: -0.000000021484306, z: -1.8455368e-15, w: 1}
+      scale: {x: 1.0000008, y: 1.0000008, z: 1}
+    - name: real_shoot_guy:joint4
+      parentName: real_shoot_guy:joint3
+      position: {x: -0.013312055, y: 9.992007e-18, z: 4.440892e-18}
+      rotation: {x: -0, y: -0, z: -5.2939553e-23, w: 1}
+      scale: {x: 1.0000012, y: 1.000001, z: 1}
+    - name: real_shoot_guy:joint11
+      parentName: fly guy(Clone)
+      position: {x: -0.0045152297, y: 0.03542067, z: 0.002911408}
+      rotation: {x: -0.7069774, y: 0.0135295885, z: -0.0135295885, w: 0.70697725}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000001}
+    - name: real_shoot_guy:joint6
+      parentName: real_shoot_guy:joint11
+      position: {x: -0.0067066704, y: -7.471553e-11, z: 9.887824e-13}
+      rotation: {x: 0.00000017881393, y: -0.010083601, z: 0.000000013038516, w: 0.9999492}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
+    - name: real_shoot_guy:joint7
+      parentName: real_shoot_guy:joint6
+      position: {x: -0.0063034324, y: 6.938894e-18, z: -4.440892e-18}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1}
+    - name: real_shoot_guy:joint5
+      parentName: fly guy(Clone)
+      position: {x: 0.005108987, y: 0.033802506, z: -0.0021203067}
+      rotation: {x: 0.013532937, y: -0.70697725, z: 0.7069773, w: -0.0135329375}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000004}
+    - name: real_shoot_guy:joint6
+      parentName: real_shoot_guy:joint5
+      position: {x: -0.0067066243, y: 1.6779049e-10, z: 2.3455458e-12}
+      rotation: {x: -0.0000000300206, y: 0.010090679, z: -0.000000011175871, w: 0.9999491}
+      scale: {x: 1.0000002, y: 1.000001, z: 1.0000006}
+    - name: real_shoot_guy:joint7
+      parentName: real_shoot_guy:joint6
+      position: {x: -0.0063034925, y: -3.330669e-18, z: -4.440892e-18}
+      rotation: {x: -0, y: -0, z: -1.110223e-16, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+    - name: real_shoot_guy:joint12
+      parentName: fly guy(Clone)
+      position: {x: -0.00063393643, y: 0.026527287, z: -0.008081655}
+      rotation: {x: 0.49721465, y: 0.50277, z: -0.50277, w: -0.49721462}
+      scale: {x: 0.9999998, y: 0.99999994, z: 0.9999998}
+    - name: real_shoot_guy:joint13
+      parentName: real_shoot_guy:joint12
+      position: {x: -0.005545519, y: -6.5549344e-11, z: 1.2247092e-13}
+      rotation: {x: 0.00000004470348, y: 0.0041052545, z: -0, w: -0.99999166}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+    - name: real_shoot_guy:joint14
+      parentName: real_shoot_guy:joint13
+      position: {x: -0.006378143, y: -4.440892e-18, z: -5.467848e-17}
+      rotation: {x: 3.5527128e-15, y: -0, z: -1.38777845e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: real_shoot_guy:joint18
+      parentName: fly guy(Clone)
+      position: {x: -0.008102205, y: 0.028774222, z: -0.0052907793}
+      rotation: {x: -0.5027698, y: -0.4972148, z: 0.49721482, w: 0.5027698}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: real_shoot_guy:joint13
+      parentName: real_shoot_guy:joint18
+      position: {x: -0.005545502, y: -9.99774e-11, z: -4.1239457e-13}
+      rotation: {x: -0.000000029802319, y: 0.00410591, z: -0.000000014901159, w: 0.9999916}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: real_shoot_guy:joint14
+      parentName: real_shoot_guy:joint13
+      position: {x: -0.0063781505, y: 8.573142e-15, z: -3.7747583e-17}
+      rotation: {x: -0, y: -0, z: 4.3021137e-16, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
+    - name: l_wing
+      parentName: fly guy(Clone)
+      position: {x: -0.0039058267, y: 0.03729187, z: -0.0016027057}
+      rotation: {x: 0.67026395, y: -0.2252694, z: -0.06262411, w: 0.70432824}
+      scale: {x: 1, y: 1.0000001, z: 1.0000004}
+    - name: l_wing1
+      parentName: l_wing
+      position: {x: -0.009529603, y: 0.0002632789, z: 0.0004942253}
+      rotation: {x: -0.8903401, y: -0.050043963, z: -0.45182413, w: -0.025396038}
+      scale: {x: 1, y: 1.0000005, z: 1.0000004}
+    - name: l_wing2
+      parentName: l_wing1
+      position: {x: -0.00746021, y: 7.0090156e-11, z: -4.6635595e-12}
+      rotation: {x: -0.002128655, y: -0.07545213, z: 0.028121395, w: 0.9967506}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: l_wing3
+      parentName: l_wing2
+      position: {x: -0.008328351, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: 6.111804e-10, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: r_wing
+      parentName: fly guy(Clone)
+      position: {x: 0.0016390492, y: 0.036359582, z: -0.004501668}
+      rotation: {x: -0.70432824, y: -0.062624104, z: 0.2252694, w: 0.6702639}
+      scale: {x: 1, y: 1, z: 1}
+    - name: r_wing1
+      parentName: r_wing
+      position: {x: 0.009529618, y: -0.00026328268, z: -0.0004942056}
+      rotation: {x: 0.8903401, y: 0.050043922, z: 0.45182413, w: 0.02539599}
+      scale: {x: 1, y: 1.0000005, z: 1.0000002}
+    - name: r_wing2
+      parentName: r_wing1
+      position: {x: 0.007460203, y: -0.000000009220685, z: -0.000000038933475}
+      rotation: {x: -0.002128658, y: -0.07545205, z: 0.028121373, w: 0.9967506}
+      scale: {x: 1, y: 1.0000002, z: 1.0000004}
+    - name: r_wing3
+      parentName: r_wing2
+      position: {x: 0.008328339, y: 0.000000010287303, z: 0.000000082147324}
+      rotation: {x: 2.3283064e-10, y: 0.000000007450581, z: 0.0000000024447218, w: 1}
+      scale: {x: 0.9999999, y: 1.0000001, z: 0.9999998}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
