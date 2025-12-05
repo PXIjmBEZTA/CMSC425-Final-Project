@@ -14,13 +14,12 @@ public class TakeDamage : MonoBehaviour
     private MovePlayer player;
     public float speedReductionWhenInvincible = 0.5f;
 
-    [Header("Invincibility Flashing")]
+    [Header ("Invincibility Flashing")]
     public Material defaultMaterial;
     public Material invincibleMaterial;
     private float timeBetweenFlashes = 0.1f;
 
     public GameObject shootGuyPrefab;
-    public Animator shootGuyAnimation; //this is needed because we need a way to set the animator for the shootGuyPrefab
 
     [Header("UI")]
     public PlayerHeartUI heart1; //leftmost heart
@@ -29,7 +28,7 @@ public class TakeDamage : MonoBehaviour
     public PlayerHeartUI heart4; //rightmost heart
 
     public UIShaker uiShaker;
-    
+
     private void Start()
     {
         player = GetComponent<MovePlayer>();
@@ -44,7 +43,7 @@ public class TakeDamage : MonoBehaviour
         if (isRespawning || isInvincible)
             return;
         IEnemyProjectile projectile = other.GetComponent<IEnemyProjectile>();
-
+        
         if (projectile != null) //if hit by an enemy projectile
         {
             lives -= 1; //lose a life
@@ -64,7 +63,7 @@ public class TakeDamage : MonoBehaviour
         //future notes for myself: ^this block was accidentally duplicated, causing 2 lives to be taken instead of one (deleted now)
     }
 
-    IEnumerator Respawn()
+    IEnumerator Respawn() 
     {
         isRespawning = true;
         GetComponent<Collider>().enabled = false;        // disable collisions
@@ -77,13 +76,7 @@ public class TakeDamage : MonoBehaviour
         Vector3 shootGuyStartPos = startPosition;
         //shootGuyStartPos.z = -11 + 0.1f; //the +0.1f is accounting for the player's size
 
-        GameObject go = Instantiate(shootGuyPrefab, shootGuyStartPos, startRotation);
-
-        ShootGuyTakeDamage takeDamageScript = go.GetComponent<ShootGuyTakeDamage>();
-        takeDamageScript.Init(heart1, heart2, heart3, uiShaker);
-
-        MoveShootGuy shootGuyMovement = go.GetComponent<MoveShootGuy>();
-        shootGuyMovement.Init(shootGuyAnimation);
+        Instantiate(shootGuyPrefab, shootGuyStartPos, startRotation);
         Destroy(gameObject);
     }
 
@@ -115,7 +108,7 @@ public class TakeDamage : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenFlashes);
         }
         rend.material = defaultMaterial;
-
+        
     }
     IEnumerator Die()
     {
@@ -142,7 +135,7 @@ public class TakeDamage : MonoBehaviour
         // Debug.Log($"UpdateHearts called. Lives: {lives}");
 
         AudioManager.Instance.Play(AudioManager.SoundType.Damage);
-
+        
         if (lives == 3 && heart4 != null)
         {
             // Debug.Log("Setting heart4 empty");

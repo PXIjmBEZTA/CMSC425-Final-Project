@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     {
         maxVanguardEnemies = maxVanguard;
         maxSupportEnemies = maxSupport;
-        
+
         enemies.Clear();
         numVanguardEnemies = 0;
         numSupportEnemies = 0;
@@ -54,28 +54,47 @@ public class GameManager : MonoBehaviour
     }
 
     private IEnumerator SpawnEnemy(IEnemy enemy)
+{
+    yield return new WaitForSeconds(0.25f);
+
+    // Check if row is full before spawning
+    if (enemy.role == EnemyRole.Vanguard && numVanguardEnemies >= maxVanguardEnemies)
     {
-        yield return new WaitForSeconds(0.25f);
+        Debug.Log("[GAMEMANAGER] Vanguard row full, can't spawn");
+        yield break;
+    }
+    if (enemy.role == EnemyRole.Support && numSupportEnemies >= maxSupportEnemies)
+    {
+        Debug.Log("[GAMEMANAGER] Support row full, can't spawn");
+        yield break;
+    }
 
-        int index = (enemy.role == EnemyRole.Vanguard) ? numVanguardEnemies : numSupportEnemies;
-        (Vector3 spawnPoint, int slotIndex) = GetBalancedSpawnPoint(enemy.role, index);
+    int index = (enemy.role == EnemyRole.Vanguard) ? numVanguardEnemies : numSupportEnemies;
+    (Vector3 spawnPoint, int slotIndex) = GetBalancedSpawnPoint(enemy.role, index);
 
-        GameObject instance = GameObject.Instantiate(((MonoBehaviour)enemy).gameObject, spawnPoint, startRotation);
-        IEnemy enemyInstance = instance.GetComponent<IEnemy>();
-        enemies.Add(enemyInstance);
+    GameObject instance = GameObject.Instantiate(((MonoBehaviour)enemy).gameObject, spawnPoint, startRotation);
+    IEnemy enemyInstance = instance.GetComponent<IEnemy>();
+    enemies.Add(enemyInstance);
 
-        if (enemy.role == EnemyRole.Vanguard)
-        {
-            vanguardEnemies[slotIndex] = enemyInstance; 
-            numVanguardEnemies++;
-            vanguardIsFull = IsRowFull(vanguardEnemies);
-        }
-        else
-        {
-            supportEnemies[slotIndex] = enemyInstance;
-            numSupportEnemies++;
-            supportIsFull = IsRowFull(supportEnemies);
-        }
+    if (enemy.role == EnemyRole.Vanguard)
+    {
+        vanguardEnemies[slotIndex] = enemyInstance; 
+        numVanguardEnemies++;
+        vanguardIsFull = IsRowFull(vanguardEnemies);
+    }
+    else
+    {
+        supportEnemies[slotIndex] = enemyInstance;
+        numSupportEnemies++;
+        supportIsFull = IsRowFull(supportEnemies);
+    }
+    
+    Debug.Log($"[GAMEMANAGER] Spawned {instance.name} at {spawnPoint}");
+}
+
+    public void SpawnEnemyFromSpawner(IEnemy enemy)
+    {
+        StartCoroutine(SpawnEnemy(enemy));
     }
 
     public void OnEnemyDeath(IEnemy enemy)

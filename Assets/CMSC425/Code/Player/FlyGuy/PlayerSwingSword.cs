@@ -50,7 +50,7 @@ public class PlayerSwingSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PauseGame.isPaused) return;
+        //if (swordButton == null) return;
 
         if ((swordButton.isPressed || secondSwordButton.isPressed) && !isSwinging && Time.time >= nextSwingTime)
         {
