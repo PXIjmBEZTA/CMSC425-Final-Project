@@ -62,7 +62,7 @@ public class MovePlayer : MonoBehaviour
         if (!isDashing && Time.time >= nextDashReadyTime && dashKeyCtrl.wasPressedThisFrame)
         {
             HandleDashA();
-            onDash.Invoke(); //
+            onDash.Invoke(); 
         }
 
         if (isDashing && Time.time >= dashEndTime)

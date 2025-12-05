@@ -2130,6 +2130,10 @@ PrefabInstance:
       propertyPath: shootGuyPrefab
       value: 
       objectReference: {fileID: 4016442617397004774, guid: e4bb405a1e1a4ff4785c6909b1457aa4, type: 3}
+    - target: {fileID: 630547965708587479, guid: ba31c7a927ba57e4f90988c3d07674f8, type: 3}
+      propertyPath: shootGuyAnimation
+      value: 
+      objectReference: {fileID: 1868620550}
     - target: {fileID: 1087616033798614167, guid: ba31c7a927ba57e4f90988c3d07674f8, type: 3}
       propertyPath: onDash.m_PersistentCalls.m_Calls.Array.size
       value: 2
