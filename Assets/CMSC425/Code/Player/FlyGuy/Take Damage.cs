@@ -14,7 +14,7 @@ public class TakeDamage : MonoBehaviour
     private MovePlayer player;
     public float speedReductionWhenInvincible = 0.5f;
 
-    [Header("Invincibility Flashing")]
+    [Header ("Invincibility Flashing")]
     public Material defaultMaterial;
     public Material invincibleMaterial;
     private float timeBetweenFlashes = 0.1f;
@@ -29,7 +29,7 @@ public class TakeDamage : MonoBehaviour
     public PlayerHeartUI heart4; //rightmost heart
 
     public UIShaker uiShaker;
-    
+
     private void Start()
     {
         player = GetComponent<MovePlayer>();
@@ -44,7 +44,7 @@ public class TakeDamage : MonoBehaviour
         if (isRespawning || isInvincible)
             return;
         IEnemyProjectile projectile = other.GetComponent<IEnemyProjectile>();
-
+        
         if (projectile != null) //if hit by an enemy projectile
         {
             lives -= 1; //lose a life
@@ -64,6 +64,8 @@ public class TakeDamage : MonoBehaviour
         //future notes for myself: ^this block was accidentally duplicated, causing 2 lives to be taken instead of one (deleted now)
     }
 
+    //This function kills the player, and respawns them as the shootGuy
+    //Instantiating the shootGuy is difficult because he is a prefab, so that explains the complex code here
     IEnumerator Respawn()
     {
         isRespawning = true;
@@ -72,6 +74,7 @@ public class TakeDamage : MonoBehaviour
         GetComponent<MovePlayer>().enabled = false;
         GetComponent<PlayerShoot>().enabled = false;
         heart4.DestroyHeart(); //because ShootGuy has 3 lives
+        GameManager.Instance.showShootGuyControls(); //This function will automatically check if playing tutorial
         yield return new WaitForSeconds(respawnDelay); //this is a delay before continuing code
 
         Vector3 shootGuyStartPos = startPosition;
@@ -84,6 +87,8 @@ public class TakeDamage : MonoBehaviour
 
         MoveShootGuy shootGuyMovement = go.GetComponent<MoveShootGuy>();
         shootGuyMovement.Init(shootGuyAnimation);
+
+
         Destroy(gameObject);
     }
 
@@ -115,7 +120,7 @@ public class TakeDamage : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenFlashes);
         }
         rend.material = defaultMaterial;
-
+        
     }
     IEnumerator Die()
     {
@@ -123,6 +128,8 @@ public class TakeDamage : MonoBehaviour
         yield return StartCoroutine(Respawn());
     }
 
+
+    //This exists because other classes may want to make the player invincible
     public void ActivateTemporaryInvincibility(float duration)
     {
         if (!gameObject.activeInHierarchy) return;
@@ -142,7 +149,7 @@ public class TakeDamage : MonoBehaviour
         // Debug.Log($"UpdateHearts called. Lives: {lives}");
 
         AudioManager.Instance.Play(AudioManager.SoundType.Damage);
-
+        
         if (lives == 3 && heart4 != null)
         {
             // Debug.Log("Setting heart4 empty");

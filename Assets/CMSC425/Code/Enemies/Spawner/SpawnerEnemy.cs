@@ -9,15 +9,11 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public GameObject shieldPrefab;
     public GameObject bomberPrefab;
     public float spawnCooldown = 12f;
-    public int maxSpawnedEnemies = 4;
-    public float spawnedScale = 0.7f;
-    public float minDistanceBetweenEnemies = 2.5f;
     public float initialDelay = 5f;
 
     public int HP { get; set; } = 150;
     public EnemyRole role { get; set; } = EnemyRole.Support;
 
-    private List<GameObject> spawnedEnemies = new List<GameObject>();
     private bool canAct = false;
 
     void Start()
@@ -27,10 +23,11 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
 
     private IEnumerator InitialStall()
     {
+        canAct = false;
         yield return new WaitForSeconds(initialDelay);
         canAct = true;
     }
-
+    
     void Update()
     {
         if (canAct)
@@ -49,7 +46,8 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public IEnumerator Behavior1()
     {
         canAct = false;
-        SpawnEnemy(shotgunPrefab);
+        IEnemy shotGun = shotgunPrefab.GetComponent<IEnemy>();
+        StartCoroutine(GameManager.Instance.SpawnEnemy(shotGun));
         yield return new WaitForSeconds(spawnCooldown);
         canAct = true;
     }
@@ -58,7 +56,8 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public IEnumerator Behavior2()
     {
         canAct = false;
-        SpawnEnemy(shieldPrefab);
+        IEnemy shield = shieldPrefab.GetComponent<IEnemy>();
+        StartCoroutine(GameManager.Instance.SpawnEnemy(shield));
         yield return new WaitForSeconds(spawnCooldown);
         canAct = true;
     }
@@ -67,51 +66,23 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public IEnumerator Behavior3()
     {
         canAct = false;
-        SpawnEnemy(bomberPrefab);
+        IEnemy bomber = bomberPrefab.GetComponent<IEnemy>();
+        StartCoroutine(GameManager.Instance.SpawnEnemy(bomber));
         yield return new WaitForSeconds(spawnCooldown);
         canAct = true;
     }
 
     private void SpawnEnemy(GameObject prefab)
     {
-        spawnedEnemies.RemoveAll(e => e == null);
-
-        if (spawnedEnemies.Count >= maxSpawnedEnemies || prefab == null)
+        if (prefab == null || GameManager.Instance == null)
             return;
 
-        Vector3 spawnPos = Vector3.zero;
-        bool validPosition = false;
-
-        for (int attempt = 0; attempt < 10; attempt++)
+        IEnemy enemy = prefab.GetComponent<IEnemy>();
+        if (enemy != null)
         {
-            spawnPos = transform.position + new Vector3(Random.Range(-4f, 4f), 0, Random.Range(-1.5f, 1.5f));
-
-            validPosition = true;
-            foreach (GameObject enemy in spawnedEnemies)
-            {
-                if (enemy != null && Vector3.Distance(spawnPos, enemy.transform.position) < minDistanceBetweenEnemies)
-                {
-                    validPosition = false;
-                    break;
-                }
-            }
-
-            if (validPosition) break;
-        }
-
-        if (validPosition)
-        {
-            GameObject enemyObj = Instantiate(prefab, spawnPos, prefab.transform.rotation);
-            enemyObj.transform.localScale = prefab.transform.localScale * spawnedScale;
-            spawnedEnemies.Add(enemyObj);
-
-            IEnemy enemyComponent = enemyObj.GetComponent<IEnemy>();
-            if (enemyComponent != null && GameManager.Instance != null)
-            {
-                GameManager.Instance.RegisterSpawnedEnemy(enemyComponent);
-            }
-
-            Debug.Log($"[SPAWNER] Spawned {prefab.name} at {spawnPos}");
+            GameManager.Instance.SpawnEnemyFromSpawner(enemy);
+            Debug.Log($"[SPAWNER] Requested spawn of {prefab.name}");
         }
     }
+
 }

@@ -5,22 +5,16 @@ public class Shotgun : MonoBehaviour, IEnemy
 {
     [Header("Shooting Settings")]
     public GameObject bulletPrefab;      
-    private float shootCooldown;     // Seconds between shots
+    private float shootCooldown = 2;     // Seconds between shots
     private int bulletCount;              // Number of bullets per spray
-    private float spreadAngle;      // Cone angle of shotgun
+    private float spreadAngle = 65;      // Cone angle of shotgun
     private bool canShoot = true;
 
     public int HP { get; set; } = 200; //change HP later if needed
     public EnemyRole role { get; set; } = EnemyRole.Vanguard;
 
-    private void Start()
-    {
-        shootCooldown = 2f;
-        spreadAngle = 65f;
-    }
     void Update()
     {
-        //Later, each enemy will have 3 behaviors
         if (canShoot)
         {
             int behavior = Random.Range(1, 4); //either 1, 2, or 3

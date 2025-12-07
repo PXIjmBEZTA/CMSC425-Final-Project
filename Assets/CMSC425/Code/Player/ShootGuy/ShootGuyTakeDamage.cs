@@ -34,7 +34,7 @@ public class ShootGuyTakeDamage : MonoBehaviour
         startPosition = transform.position;
         startRotation = transform.rotation;
 
-        StartCoroutine(TemporaryInvincibility(invincibilityDuration));
+        ActivateTemporaryInvincibility(invincibilityDuration);
         
         
         heart1.SetFull();

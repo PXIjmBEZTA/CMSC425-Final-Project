@@ -16,7 +16,7 @@ public class PlayerShoot : MonoBehaviour
     public ButtonControl shootButton;
     public KeyControl secondShootButton;
 
-    public float counter = 0f; //counts how long the shoot button was held (for bigShoot)
+    public float counter = 0f;
 
     public UnityEvent onShoot; //add unity events and later invoke them in the methods
     //(they will allow us to drag sounds to its field in the inspector view)
@@ -33,9 +33,6 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PauseGame.isPaused)
-            return;
-
         if (nextTimeFire > 0)
             nextTimeFire -= Time.deltaTime;
 

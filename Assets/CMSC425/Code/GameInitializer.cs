@@ -9,7 +9,7 @@ public class GameInitializer : MonoBehaviour
     [Header("Enemy Numbers")]
     public int numVanguards = 2;
     public int numSupports = 1;
-
+    public bool playingTutorial = false;
     void Start()
     {
         IEnemy[] enemies = new IEnemy[enemyPrefabs.Length];
@@ -17,7 +17,7 @@ public class GameInitializer : MonoBehaviour
         {
             enemies[i] = enemyPrefabs[i].GetComponent<IEnemy>();
         }
-        GameManager.Instance.InitiateCombat(enemies, numVanguards, numSupports);
+        GameManager.Instance.InitiateCombat(enemies, numVanguards, numSupports, playingTutorial);
     }
 
 }

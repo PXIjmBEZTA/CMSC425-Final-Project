@@ -124,5 +124,5 @@ MonoBehaviour:
   speed: 3
   lifeTime: 5
   timeLeft: 0
-  damage: 5
+  damage: 10
   acceleration: 0.00076

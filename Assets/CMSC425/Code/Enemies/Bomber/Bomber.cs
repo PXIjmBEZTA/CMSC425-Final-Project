@@ -13,11 +13,11 @@ public class Bomber : MonoBehaviour, IEnemy
     public int HP { get; set; } = 150;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public EnemyRole role { get; set; } = EnemyRole.Vanguard;
+
     void Start()
     {
         StartCoroutine(InitialStall());
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -135,6 +135,8 @@ public class Bomber : MonoBehaviour, IEnemy
 
     private IEnumerator InitialStall()
     {
+        canShoot = false;
         yield return new WaitForSeconds(2);
+        canShoot = true;
     }
 }

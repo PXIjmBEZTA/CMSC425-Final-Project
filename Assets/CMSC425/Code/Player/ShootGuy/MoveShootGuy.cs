@@ -51,22 +51,8 @@ public class MoveShootGuy : MonoBehaviour
     void HandleMovement()
     {
         Vector3 move = Vector3.zero;
-        if (leftKey.isPressed)
-        {
-            move += Vector3.left;
-            animator.SetBool("isMoving", true);
-            animator.SetFloat("Direction", 1);
-        }
-        else if (rightKey.isPressed)
-        { 
-            move += Vector3.right;
-            animator.SetBool("isMoving", true);
-            animator.SetFloat("Direction", -1);
-        } 
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
+        if (leftKey.isPressed) move += Vector3.left;
+        if (rightKey.isPressed) move += Vector3.right;
 
         if (move.sqrMagnitude > 0f)
         {

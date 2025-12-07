@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,27 +25,32 @@ public class GameManager : MonoBehaviour
     private IEnemy[] vanguardEnemies = new IEnemy[3];
     private IEnemy[] supportEnemies = new IEnemy[3];
 
-    public bool vanguardIsFull = false;
-    public bool supportIsFull = false;
+    private bool vanguardIsFull = false;
+    private bool supportIsFull = false;
 
     private int numVanguardEnemies = 0;
     private int numSupportEnemies = 0; 
     private int maxVanguardEnemies = 0;
     private int maxSupportEnemies = 0;
 
+    private bool playingTutorial = false;
+    public TMP_Text controlsText;
+    public TMP_Text shootGuyControls;
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
         else
             Destroy(gameObject);
+        controlsText.enabled = false;
+        shootGuyControls.enabled = false;
     }
 
-    public void InitiateCombat(IEnemy[] initialEnemies, int maxVanguard, int maxSupport)
+    public void InitiateCombat(IEnemy[] initialEnemies, int maxVanguard, int maxSupport, bool tutorial)
     {
         maxVanguardEnemies = maxVanguard;
         maxSupportEnemies = maxSupport;
-        
+        playingTutorial = tutorial;
         enemies.Clear();
         numVanguardEnemies = 0;
         numSupportEnemies = 0;
@@ -51,15 +58,30 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(SpawnEnemy(initialEnemies[i]));
         }
+
+        if (playingTutorial) showControls();
     }
 
-    private IEnumerator SpawnEnemy(IEnemy enemy)
+    public IEnumerator SpawnEnemy(IEnemy enemy)
     {
         yield return new WaitForSeconds(0.25f);
 
+        // Check if row is full before spawning
+        if (enemy.role == EnemyRole.Vanguard && numVanguardEnemies >= maxVanguardEnemies)
+        {
+            Debug.Log("[GAMEMANAGER] Vanguard row full, can't spawn");
+            yield break;
+        }
+        if (enemy.role == EnemyRole.Support && numSupportEnemies >= maxSupportEnemies)
+        {
+            Debug.Log("[GAMEMANAGER] Support row full, can't spawn");
+            yield break;
+        }
+
         int index = (enemy.role == EnemyRole.Vanguard) ? numVanguardEnemies : numSupportEnemies;
         (Vector3 spawnPoint, int slotIndex) = GetBalancedSpawnPoint(enemy.role, index);
-
+        IEnemy[] row = enemy.role == EnemyRole.Vanguard ? vanguardEnemies : supportEnemies;
+        if (IsRowFull(row)) yield break; //do not add if the row is full.
         GameObject instance = GameObject.Instantiate(((MonoBehaviour)enemy).gameObject, spawnPoint, startRotation);
         IEnemy enemyInstance = instance.GetComponent<IEnemy>();
         enemies.Add(enemyInstance);
@@ -76,6 +98,13 @@ public class GameManager : MonoBehaviour
             numSupportEnemies++;
             supportIsFull = IsRowFull(supportEnemies);
         }
+    
+        Debug.Log($"[GAMEMANAGER] Spawned {instance.name} at {spawnPoint}");
+    }
+
+    public void SpawnEnemyFromSpawner(IEnemy enemy)
+    {
+        StartCoroutine(SpawnEnemy(enemy));
     }
 
     public void OnEnemyDeath(IEnemy enemy)
@@ -85,11 +114,13 @@ public class GameManager : MonoBehaviour
         {
             RemoveEnemyFromRow(vanguardEnemies, enemy);
             vanguardIsFull = false;
+            numVanguardEnemies--;
         }
         else
         {
             RemoveEnemyFromRow(supportEnemies, enemy);
             supportIsFull = false;
+            numSupportEnemies--;
         }
 
         if (enemies.Count == 0 && !gameOver)
@@ -163,5 +194,24 @@ public class GameManager : MonoBehaviour
 
         gameOver = true;
         Debug.Log("GAME OVER! Player has no lives remaining.");
+    }
+
+    public void showControls()
+    {
+        controlsText.enabled = true;
+    }
+
+    public void showShootGuyControls()
+    {
+        if (playingTutorial)
+        {
+            controlsText.enabled = false;
+            shootGuyControls.enabled = true;
+        }
+    }
+    public void hideControls()
+    {
+        controlsText.enabled = false;
+        shootGuyControls.enabled = false;
     }
 }
