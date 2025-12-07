@@ -10,7 +10,7 @@ public class PlayerShoot : MonoBehaviour
     public GameObject bulletPrefab;
 
     public GameObject bigBulletPrefab; //alternative for big Shoot
-    public Transform firePoint; //the exact place where the bullets originate from
+    private Transform firePoint; //the exact place where the bullets originate from
     public float fireRate = 1; //seconds between shots
     private float nextTimeFire = 0f;
     public ButtonControl shootButton;
@@ -22,13 +22,15 @@ public class PlayerShoot : MonoBehaviour
     //(they will allow us to drag sounds to its field in the inspector view)
     //(make sure to import `using UnityEngine.Events;`)
     public UnityEvent onBigShoot;
+    private AudioInputManager audio;
+
 
     private void Start()
     {
         shootButton = Mouse.current.leftButton;
         secondShootButton = Keyboard.current[Key.J];
-        //shootButton = Keyboard.current.mKey;
-        //shootButton = Keyboard.current.spaceKey;
+        audio = AudioInputManager.Instance;
+        firePoint = GetComponentInChildren<Transform>().Find("PlayerFirePoint");
     }
     // Update is called once per frame
     void Update()
@@ -45,13 +47,13 @@ public class PlayerShoot : MonoBehaviour
             if (counter >= 1.0f)
             {
                 BigShoot();
-                onBigShoot.Invoke();
+                audio.PlayBigShootSound();
             }
 
             else
             {
                 Shoot();
-                onShoot.Invoke();
+                audio.PlayShootSound();
             }
 
 
@@ -70,7 +72,7 @@ public class PlayerShoot : MonoBehaviour
     
     //a wrapper method that encapsulates both
 
-    public bool Shoot()
+    private bool Shoot()
     {
         if (bulletPrefab != null && firePoint != null)
         {
@@ -79,7 +81,7 @@ public class PlayerShoot : MonoBehaviour
         return true;
     }
 
-    public bool BigShoot()
+    private bool BigShoot()
     {
         if (bigBulletPrefab != null && firePoint != null)
         {

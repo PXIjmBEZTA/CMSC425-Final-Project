@@ -5,11 +5,21 @@ using UnityEngine.InputSystem.Controls;
 public class AudioInputManager : MonoBehaviour
 {
     public ButtonControl shootButton;
-
+    public static AudioInputManager Instance;
     void Start()
     {
         
         shootButton = Mouse.current.leftButton;
+    }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+            return;
+        }
+        Instance = this;
     }
     void Update()
     {
