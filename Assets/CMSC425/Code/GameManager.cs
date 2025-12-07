@@ -46,11 +46,10 @@ public class GameManager : MonoBehaviour
         shootGuyControls.enabled = false;
     }
 
-    public void InitiateCombat(IEnemy[] initialEnemies, int maxVanguard, int maxSupport, bool tutorial)
+    public void InitiateCombat(IEnemy[] initialEnemies, int maxVanguard, int maxSupport)
     {
         maxVanguardEnemies = maxVanguard;
         maxSupportEnemies = maxSupport;
-        playingTutorial = tutorial;
         enemies.Clear();
         numVanguardEnemies = 0;
         numSupportEnemies = 0;
@@ -59,9 +58,13 @@ public class GameManager : MonoBehaviour
             StartCoroutine(SpawnEnemy(initialEnemies[i]));
         }
 
-        if (playingTutorial) showControls();
     }
 
+    public void TurnOnTurorial()
+    {
+        playingTutorial = true;
+        showControls();
+    }
     public IEnumerator SpawnEnemy(IEnemy enemy)
     {
         yield return new WaitForSeconds(0.25f);

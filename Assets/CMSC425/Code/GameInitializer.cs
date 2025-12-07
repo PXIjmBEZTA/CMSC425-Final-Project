@@ -17,7 +17,8 @@ public class GameInitializer : MonoBehaviour
         {
             enemies[i] = enemyPrefabs[i].GetComponent<IEnemy>();
         }
-        GameManager.Instance.InitiateCombat(enemies, numVanguards, numSupports, playingTutorial);
+        GameManager.Instance.InitiateCombat(enemies, numVanguards, numSupports);
+        GameManager.Instance.TurnOnTurorial();
     }
 
 }
