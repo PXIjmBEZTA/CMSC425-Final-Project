@@ -14,12 +14,13 @@ public class TakeDamage : MonoBehaviour
     private MovePlayer player;
     public float speedReductionWhenInvincible = 0.5f;
 
-    [Header ("Invincibility Flashing")]
+    [Header("Invincibility Flashing")]
     public Material defaultMaterial;
     public Material invincibleMaterial;
     private float timeBetweenFlashes = 0.1f;
 
     public GameObject shootGuyPrefab;
+    public Animator shootGuyAnimation; //this is needed because we need a way to set the animator for the shootGuyPrefab
 
     [Header("UI")]
     public PlayerHeartUI heart1; //leftmost heart
@@ -28,7 +29,7 @@ public class TakeDamage : MonoBehaviour
     public PlayerHeartUI heart4; //rightmost heart
 
     public UIShaker uiShaker;
-
+    
     private void Start()
     {
         player = GetComponent<MovePlayer>();
@@ -43,7 +44,7 @@ public class TakeDamage : MonoBehaviour
         if (isRespawning || isInvincible)
             return;
         IEnemyProjectile projectile = other.GetComponent<IEnemyProjectile>();
-        
+
         if (projectile != null) //if hit by an enemy projectile
         {
             lives -= 1; //lose a life
@@ -119,7 +120,7 @@ public class TakeDamage : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenFlashes);
         }
         rend.material = defaultMaterial;
-        
+
     }
     IEnumerator Die()
     {
@@ -148,7 +149,7 @@ public class TakeDamage : MonoBehaviour
         // Debug.Log($"UpdateHearts called. Lives: {lives}");
 
         AudioManager.Instance.Play(AudioManager.SoundType.Damage);
-        
+
         if (lives == 3 && heart4 != null)
         {
             // Debug.Log("Setting heart4 empty");

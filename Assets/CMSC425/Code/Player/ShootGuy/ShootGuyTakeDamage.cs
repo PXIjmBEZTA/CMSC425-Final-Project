@@ -13,6 +13,9 @@ public class ShootGuyTakeDamage : MonoBehaviour
     private int lives;
     private MoveShootGuy player;
     public float speedReductionWhenInvincible = 0.5f;
+    public MovePlayer flyGuy;
+
+
 
     [Header("Invincibility Flashing")]
     public Material defaultMaterial;
@@ -27,6 +30,7 @@ public class ShootGuyTakeDamage : MonoBehaviour
 
     public UIShaker uiShaker;
 
+
     private void Start()
     {
         player = GetComponent<MoveShootGuy>();
@@ -34,13 +38,28 @@ public class ShootGuyTakeDamage : MonoBehaviour
         startPosition = transform.position;
         startRotation = transform.rotation;
 
-        ActivateTemporaryInvincibility(invincibilityDuration);
-        
-        
+        StartCoroutine(TemporaryInvincibility(invincibilityDuration));
+
+
+        //Get a reference to the old hearts from the flyGuy
+
+
+
         heart1.SetFull();
         heart2.SetFull();
         heart3.SetFull();
     }
+
+    //This is necessary for the GameManager to manually set the UI elements.
+    public void Init(PlayerHeartUI h1, PlayerHeartUI h2, PlayerHeartUI h3, UIShaker shaker)
+    {
+        heart1 = h1;
+        heart2 = h2;
+        heart3 = h3;
+        uiShaker = shaker;
+    }
+
+
     void OnTriggerEnter(Collider other)
     {
 

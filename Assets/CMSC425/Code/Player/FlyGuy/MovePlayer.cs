@@ -35,10 +35,10 @@ public class MovePlayer : MonoBehaviour
         baseSpeed = speed;
 
         var kb = Keyboard.current;
-        forwardKey  = kb[forwardMove];
+        forwardKey = kb[forwardMove];
         backwardKey = kb[backwardMove];
-        leftKey     = kb[leftMove];
-        rightKey    = kb[rightMove];
+        leftKey = kb[leftMove];
+        rightKey = kb[rightMove];
         dashKeyCtrl = kb[dashKey];
 
 
@@ -57,44 +57,46 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
+        if (PauseGame.isPaused) return;
+
         if (!isDashing && Time.time >= nextDashReadyTime && dashKeyCtrl.wasPressedThisFrame)
         {
             HandleDashA();
-            onDash.Invoke(); //
+            onDash.Invoke();
         }
 
         if (isDashing && Time.time >= dashEndTime)
         {
             HandleDashB();
         }
-        
+
         HandleMovement();
     }
 
     void HandleDashA()
     {
 
-        
-            isDashing = true;
-            dashEndTime = Time.time + dashDuration;
-            speed *= dashMultiplier;
-            dashTrail.emitting = true; // turn on trail
 
-            takeDamageScript.ActivateTemporaryInvincibility(dashDuration);
-        }
+        isDashing = true;
+        dashEndTime = Time.time + dashDuration;
+        speed *= dashMultiplier;
+        dashTrail.emitting = true; // turn on trail
 
-        
-    
-    
+        takeDamageScript.ActivateTemporaryInvincibility(dashDuration);
+    }
+
+
+
+
 
     void HandleDashB()
     {
-        
-            isDashing = false;
-            speed /= dashMultiplier;
-            dashTrail.emitting = false; // turn off trail
-            nextDashReadyTime = Time.time + dashCooldown;
-        
+
+        isDashing = false;
+        speed /= dashMultiplier;
+        dashTrail.emitting = false; // turn off trail
+        nextDashReadyTime = Time.time + dashCooldown;
+
     }
 
     void HandleMovement()
