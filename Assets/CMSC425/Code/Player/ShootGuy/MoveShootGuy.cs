@@ -34,10 +34,6 @@ public class MoveShootGuy : MonoBehaviour
     }
 
 
-    public void Init(Animator a) //This is necessary because shootGuy is a prefab
-    {
-        animator = a;
-    }
     // Update is called once per frame
     void Update()
     {

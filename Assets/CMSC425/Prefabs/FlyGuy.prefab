@@ -165,6 +165,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: 6c71bbe010a66c444968945b59402c80, type: 2}
   invincibleMaterial: {fileID: 2100000, guid: ee65af80aa416a04c98d55776622ea7a, type: 2}
   shootGuyPrefab: {fileID: 0}
+  shootGuyAnimation: {fileID: 0}
   heart1: {fileID: 0}
   heart2: {fileID: 0}
   heart3: {fileID: 0}

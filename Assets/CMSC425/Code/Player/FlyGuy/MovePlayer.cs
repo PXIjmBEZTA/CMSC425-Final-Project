@@ -52,7 +52,7 @@ public class MovePlayer : MonoBehaviour
         dashTrail.emitting = false;                   // only active during dash
 
 
-        takeDamageScript = GetComponent<TakeDamage>();
+        takeDamageScript = GetComponentInChildren<TakeDamage>();
     }
 
     void Update()

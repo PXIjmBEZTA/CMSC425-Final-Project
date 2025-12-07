@@ -187,7 +187,6 @@ MonoBehaviour:
   bigBulletPrefab: {fileID: 1208900415017191153, guid: 0242bb9264c954fb6a48dbf2a3b42d93, type: 3}
   firePoint: {fileID: 3331713326329865084}
   fireRate: 0.5
-  counter: 0
   onShoot:
     m_PersistentCalls:
       m_Calls:
@@ -205,7 +204,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioInputManager, Assembly-CSharp
-        m_MethodName: PlayShootSound
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -232,7 +231,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioInputManager, Assembly-CSharp
-        m_MethodName: PlayBigShootSound
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -262,6 +261,7 @@ MonoBehaviour:
   jumpKey: 1
   jumpHeight: 2
   jumpDuration: 1
+  animator: {fileID: 0}
 --- !u!114 &347466004700330465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +277,7 @@ MonoBehaviour:
   invincibilityDuration: 2
   maxLives: 3
   speedReductionWhenInvincible: 0.5
+  flyGuy: {fileID: 0}
   defaultMaterial: {fileID: 2100000, guid: 6c71bbe010a66c444968945b59402c80, type: 2}
   invincibleMaterial: {fileID: 2100000, guid: ee65af80aa416a04c98d55776622ea7a, type: 2}
   heart1: {fileID: 0}

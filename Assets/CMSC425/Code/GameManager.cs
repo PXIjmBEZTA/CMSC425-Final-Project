@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
         playingTutorial = true;
         showControls();
     }
+
+
     public IEnumerator SpawnEnemy(IEnemy enemy)
     {
         yield return new WaitForSeconds(0.25f);

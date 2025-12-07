@@ -30,6 +30,8 @@ public class ShootGuyTakeDamage : MonoBehaviour
 
     public UIShaker uiShaker;
 
+    private Renderer[] modelRenderers;
+
 
     private void Start()
     {
@@ -48,6 +50,10 @@ public class ShootGuyTakeDamage : MonoBehaviour
         heart1.SetFull();
         heart2.SetFull();
         heart3.SetFull();
+
+        modelRenderers = GetComponentsInChildren<Renderer>();
+        if (modelRenderers == null)
+            Debug.Log("No renderers found!");
     }
 
     //This is necessary for the GameManager to manually set the UI elements.
@@ -100,20 +106,19 @@ public class ShootGuyTakeDamage : MonoBehaviour
         player.speed /= speedReductionWhenInvincible; //reset player move speed
         GetComponent<PlayerShoot>().enabled = true;//enable shooting
 
-        GetComponent<MeshRenderer>().material = defaultMaterial;
+        SetRenderersMaterial(defaultMaterial);
     }
 
     IEnumerator InvincibilityFlashing()
     {
-        MeshRenderer rend = GetComponent<MeshRenderer>();
         bool toggle = false;
         while (isInvincible)
         {
-            rend.material = toggle ? invincibleMaterial : defaultMaterial;
+            SetRenderersMaterial(toggle ? invincibleMaterial : defaultMaterial);
             toggle = !toggle;
             yield return new WaitForSeconds(timeBetweenFlashes);
         }
-        rend.material = defaultMaterial;
+        SetRenderersMaterial(defaultMaterial);
 
     }
     IEnumerator Die()
@@ -159,5 +164,24 @@ public class ShootGuyTakeDamage : MonoBehaviour
                 uiShaker.SetDeadSprite();
         }
         yield return null;
+    }
+
+
+    private void SetRenderersEnabled(bool enabled)
+    {
+        if (modelRenderers == null) return;
+        foreach (var r in modelRenderers) r.enabled = enabled;
+    }
+
+    // Helper to set material(s) to the same material (simple flashing)
+    private void SetRenderersMaterial(Material mat)
+    {
+        if (modelRenderers == null) return;
+        foreach (var r in modelRenderers)
+        {
+            // This creates per-instance materials — that's fine for flashing.
+            // If you want to avoid instancing, use sharedMaterial (but it affects all instances).
+            r.material = mat;
+        }
     }
 }

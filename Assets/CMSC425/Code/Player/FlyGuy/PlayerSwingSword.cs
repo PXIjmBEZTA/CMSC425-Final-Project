@@ -10,7 +10,7 @@ public class PlayerSwingSword : MonoBehaviour
     public GameObject sword;
     public float swingDuration = 0.4f;
     public float swingCooldown = 1f;
-    public float swordDistance = 1;
+    public float swordDistance = 2f;
 
     [Header("Controls")]
     public ButtonControl swordButton;

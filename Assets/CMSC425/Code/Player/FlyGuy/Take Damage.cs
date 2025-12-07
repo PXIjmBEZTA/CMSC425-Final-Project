@@ -29,14 +29,20 @@ public class TakeDamage : MonoBehaviour
     public PlayerHeartUI heart4; //rightmost heart
 
     public UIShaker uiShaker;
+    private Renderer[] modelRenderers;
+
     
+
     private void Start()
     {
-        player = GetComponent<MovePlayer>();
+        player = GetComponentInParent<MovePlayer>();
         lives = maxLives;
         startPosition = transform.position;
         startRotation = transform.rotation;
 
+        modelRenderers = GetComponentsInChildren<Renderer>();
+        if (modelRenderers == null)
+            Debug.Log("No renderers found!");
     }
     void OnTriggerEnter(Collider other)
     {
@@ -70,9 +76,9 @@ public class TakeDamage : MonoBehaviour
     {
         isRespawning = true;
         GetComponent<Collider>().enabled = false;        // disable collisions
-        GetComponent<MeshRenderer>().enabled = false;    // hide player visuals
-        GetComponent<MovePlayer>().enabled = false;
-        GetComponent<PlayerShoot>().enabled = false;
+        SetRenderersEnabled(false);    // hide player visuals
+        GetComponentInParent<MovePlayer>().enabled = false;
+        GetComponentInParent<PlayerShoot>().enabled = false;
         heart4.DestroyHeart(); //because ShootGuy has 3 lives
         GameManager.Instance.showShootGuyControls(); //This function will automatically check if playing tutorial
         yield return new WaitForSeconds(respawnDelay); //this is a delay before continuing code
@@ -85,18 +91,15 @@ public class TakeDamage : MonoBehaviour
         ShootGuyTakeDamage takeDamageScript = go.GetComponent<ShootGuyTakeDamage>();
         takeDamageScript.Init(heart1, heart2, heart3, uiShaker);
 
-        MoveShootGuy shootGuyMovement = go.GetComponent<MoveShootGuy>();
-        shootGuyMovement.Init(shootGuyAnimation);
 
-
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     IEnumerator InvincibilityPeriod() //when invincible, move slower and flash rapidly
     {
         isInvincible = true;
         player.speed *= speedReductionWhenInvincible; //reduce player move speed
-        GetComponent<PlayerShoot>().enabled = false; //disable shooting
+        GetComponentInParent<PlayerShoot>().enabled = false; //disable shooting
 
         StartCoroutine(InvincibilityFlashing());
 
@@ -104,22 +107,21 @@ public class TakeDamage : MonoBehaviour
 
         isInvincible = false;
         player.speed /= speedReductionWhenInvincible; //reset player move speed
-        GetComponent<PlayerShoot>().enabled = true;//enable shooting
+        GetComponentInParent<PlayerShoot>().enabled = true;//enable shooting
 
-        GetComponent<MeshRenderer>().material = defaultMaterial;
+        SetRenderersMaterial(defaultMaterial);
     }
 
     IEnumerator InvincibilityFlashing()
     {
-        MeshRenderer rend = GetComponent<MeshRenderer>();
         bool toggle = false;
         while (isInvincible)
         {
-            rend.material = toggle ? invincibleMaterial : defaultMaterial;
+            SetRenderersMaterial(toggle ? invincibleMaterial : defaultMaterial);
             toggle = !toggle;
             yield return new WaitForSeconds(timeBetweenFlashes);
         }
-        rend.material = defaultMaterial;
+        SetRenderersMaterial(defaultMaterial);
 
     }
     IEnumerator Die()
@@ -173,5 +175,23 @@ public class TakeDamage : MonoBehaviour
                 uiShaker.SetDeadSprite();
         }
         yield return null;
+    }
+
+    private void SetRenderersEnabled(bool enabled)
+    {
+        if (modelRenderers == null) return;
+        foreach (var r in modelRenderers) r.enabled = enabled;
+    }
+
+    // Helper to set material(s) to the same material (simple flashing)
+    private void SetRenderersMaterial(Material mat)
+    {
+        if (modelRenderers == null) return;
+        foreach (var r in modelRenderers)
+        {
+            // This creates per-instance materials — that's fine for flashing.
+            // If you want to avoid instancing, use sharedMaterial (but it affects all instances).
+            r.material = mat;
+        }
     }
 }
