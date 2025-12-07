@@ -20,7 +20,6 @@ public class TakeDamage : MonoBehaviour
     private float timeBetweenFlashes = 0.1f;
 
     public GameObject shootGuyPrefab;
-    public Animator shootGuyAnimation; //this is needed because we need a way to set the animator for the shootGuyPrefab
 
     [Header("UI")]
     public PlayerHeartUI heart1; //leftmost heart

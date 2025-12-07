@@ -21,8 +21,6 @@ public class MoveShootGuy : MonoBehaviour
     private float jumpTimer = 0;
     private float startZ;
 
-    public Animator animator;
-
     void Start()
     {
         Keyboard kb = Keyboard.current;
@@ -33,16 +31,9 @@ public class MoveShootGuy : MonoBehaviour
         jumpKeyCtrl = kb[jumpKey];
     }
 
-    
-    public void Init(Animator a) //This is necessary because shootGuy is a prefab
-    {
-        animator = a;
-    }
     // Update is called once per frame
     void Update()
     {
-        if (PauseGame.isPaused) return;
-
         HandleMovement();
         HandleJump();
     }

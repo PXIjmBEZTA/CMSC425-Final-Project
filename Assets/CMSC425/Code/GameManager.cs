@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         if (playingTutorial) showControls();
     }
 
-    public IEnumerator SpawnEnemy(IEnemy enemy)
+    private IEnumerator SpawnEnemy(IEnemy enemy)
     {
         yield return new WaitForSeconds(0.25f);
 
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("[GAMEMANAGER] Support row full, can't spawn");
             yield break;
         }
-
+        
         int index = (enemy.role == EnemyRole.Vanguard) ? numVanguardEnemies : numSupportEnemies;
         (Vector3 spawnPoint, int slotIndex) = GetBalancedSpawnPoint(enemy.role, index);
         IEnemy[] row = enemy.role == EnemyRole.Vanguard ? vanguardEnemies : supportEnemies;
