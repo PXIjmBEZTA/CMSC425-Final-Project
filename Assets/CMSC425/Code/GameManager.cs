@@ -34,8 +34,14 @@ public class GameManager : MonoBehaviour
     private int maxSupportEnemies = 0;
 
     private bool playingTutorial = false;
+
+    [Header("Text")]
     public TMP_Text controlsText;
     public TMP_Text shootGuyControls;
+    public TMP_Text victoryText;
+    public TMP_Text defeatText;
+
+    public float transferTime = 4; //time to transfer from combat to overworld
     private void Awake()
     {
         if (Instance == null)
@@ -44,6 +50,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         controlsText.enabled = false;
         shootGuyControls.enabled = false;
+        victoryText.enabled = false;
+        defeatText.enabled = false;
     }
 
     public void InitiateCombat(IEnemy[] initialEnemies, int maxVanguard, int maxSupport)
@@ -130,7 +138,7 @@ public class GameManager : MonoBehaviour
 
         if (enemies.Count == 0 && !gameOver)
         {
-            Debug.Log("Yippee! You win!");
+            StartCoroutine(Victory());
         }
     }
 
@@ -197,8 +205,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameOver) return;
 
-        gameOver = true;
-        Debug.Log("GAME OVER! Player has no lives remaining.");
+        StartCoroutine(Defeat());
     }
 
     public void showControls()
@@ -218,5 +225,32 @@ public class GameManager : MonoBehaviour
     {
         controlsText.enabled = false;
         shootGuyControls.enabled = false;
+    }
+
+    private IEnumerator Victory()
+    {
+        Debug.Log("Yippee! You win!");
+        controlsText.enabled = false;
+        shootGuyControls.enabled = false;
+
+        victoryText.enabled = true;
+        gameOver = true;
+
+        //change scene to overworld
+        yield return new WaitForSeconds(transferTime);
+
+    }
+
+    private IEnumerator Defeat()
+    {
+        Debug.Log("GAME OVER! Player has no lives remaining.");
+        controlsText.enabled = false;
+        shootGuyControls.enabled = false;
+
+        defeatText.enabled = true;
+        gameOver = true;
+
+        //change scene to overworld
+        yield return new WaitForSeconds(transferTime);
     }
 }
