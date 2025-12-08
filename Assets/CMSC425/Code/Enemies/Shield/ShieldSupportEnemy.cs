@@ -23,6 +23,7 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         StartCoroutine(Behavior1());
         StartCoroutine(Behavior2());
         StartCoroutine(Behavior3());
@@ -35,7 +36,7 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     while (true)
     {
-        anim = GetComponent<Animator>();
+        
         anim.Play("shielder enemy channel");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         Debug.Log($"[SHIELD] Found {enemies.Length} enemies with Enemy tag");
@@ -63,9 +64,9 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
             {
                 GameObject visual = Instantiate(barrierPrefab);
                 visual.transform.SetParent(enemy.transform);
-                visual.transform.localPosition = Vector3.forward * 0.8f;
+                visual.transform.localPosition = new Vector3(-.1f, -.1f, 1f);
                 visual.transform.localRotation = Quaternion.identity;
-                visual.transform.localScale = Vector3.one * 0.3f;
+                visual.transform.localScale = new Vector3(4f, 15f, 8f);
                 barrier.SetVisual(visual);
             }
 
@@ -84,7 +85,6 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
         while (true)
         {
-            anim = GetComponent<Animator>();
             anim.Play("shielder enemy channel");
             if (reflectiveBarrierPrefab != null)
             {
@@ -135,7 +135,6 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
     {
         yield return new WaitForSeconds(7f);
 
-        anim = GetComponent<Animator>();
         anim.Play("shielder enemy channel");
         while (true)
         {
@@ -185,7 +184,6 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     void OnDestroy()
     {
-        anim = GetComponent<Animator>();
         anim.Play("shielder enemy break");
         // Only remove shields that THIS ShieldEnemy created
         foreach (GameObject enemy in shieldedEnemies)

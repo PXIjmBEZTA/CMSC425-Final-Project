@@ -16,10 +16,16 @@ public class Shotgun : MonoBehaviour, IEnemy
     public bool isBoss { get; set; } = false;//
     public Animator anim;
 
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     void Update()
     {
         if (canShoot)
         {
+            anim.Play("shotgun enemy attack");
             int behavior = Random.Range(1, 4); //either 1, 2, or 3
             if (behavior == 1)
                 StartCoroutine(Behavior1());
@@ -33,7 +39,6 @@ public class Shotgun : MonoBehaviour, IEnemy
     public IEnumerator Behavior1() //Basic shotgun shot
     {
         canShoot = false;
-        anim = GetComponent<Animator>();
         anim.Play("shotgun enemy attack");
         bulletCount = Random.Range(12, 15);//12, 13, or 14 bullets
         float angleStep = spreadAngle / (bulletCount - 1);
@@ -55,7 +60,6 @@ public class Shotgun : MonoBehaviour, IEnemy
     public IEnumerator Behavior2() //Shoots left to right instead of default shotgun
     {
         canShoot = false;
-        anim = GetComponent<Animator>();
         anim.Play("shotgun enemy attack");
         bulletCount = Random.Range(12, 16);
         float angleStep = spreadAngle / (bulletCount - 1);
@@ -83,7 +87,6 @@ public class Shotgun : MonoBehaviour, IEnemy
     public IEnumerator Behavior3()
     {
         canShoot = false;
-        anim = GetComponent<Animator>();
         anim.Play("shotgun enemy attack");
         bulletCount = Random.Range(12, 16);
         float angleStep = spreadAngle / (bulletCount - 1);

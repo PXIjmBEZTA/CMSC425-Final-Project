@@ -21,6 +21,7 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         StartCoroutine(InitialStall());
     }
 
@@ -35,6 +36,7 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     {
         if (canAct)
         {
+            anim.Play("spawner enemy attack");
             int behavior = Random.Range(1, 4);
             if (behavior == 1)
                 StartCoroutine(Behavior1());
@@ -49,8 +51,6 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public IEnumerator Behavior1()
     {
         canAct = false;
-        anim = GetComponent<Animator>();
-        anim.Play("spawner enemy attack");
         IEnemy shotGun = shotgunPrefab.GetComponent<IEnemy>();
         StartCoroutine(GameManager.Instance.SpawnEnemy(shotGun));
         yield return new WaitForSeconds(spawnCooldown);
@@ -61,8 +61,6 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public IEnumerator Behavior2()
     {
         canAct = false;
-        anim = GetComponent<Animator>();
-        anim.Play("spawner enemy attack");
         IEnemy shield = shieldPrefab.GetComponent<IEnemy>();
         StartCoroutine(GameManager.Instance.SpawnEnemy(shield));
         yield return new WaitForSeconds(spawnCooldown);
@@ -73,8 +71,6 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public IEnumerator Behavior3()
     {
         canAct = false;
-        anim = GetComponent<Animator>();
-        anim.Play("spawner enemy attack");
         IEnemy bomber = bomberPrefab.GetComponent<IEnemy>();
         StartCoroutine(GameManager.Instance.SpawnEnemy(bomber));
         yield return new WaitForSeconds(spawnCooldown);

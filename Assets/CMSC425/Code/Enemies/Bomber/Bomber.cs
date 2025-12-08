@@ -18,6 +18,7 @@ public class Bomber : MonoBehaviour, IEnemy
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         StartCoroutine(InitialStall());
     }
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class Bomber : MonoBehaviour, IEnemy
     {
         if (canShoot)
         {
+            anim.Play("bomber enemy attack");
             int behavior = Random.Range(1, 4);
             if (behavior == 1)
                 StartCoroutine(Behavior1());
@@ -43,8 +45,6 @@ public class Bomber : MonoBehaviour, IEnemy
     public IEnumerator Behavior1()
     {
         canShoot = false;
-        anim = GetComponent<Animator>();
-        anim.Play("bomber enemy attack");
         shootCooldown = 3;
         PlaceBomb(); //The bomb itself handles the explosion
         yield return new WaitForSeconds(1);
@@ -58,8 +58,6 @@ public class Bomber : MonoBehaviour, IEnemy
     public IEnumerator Behavior2()
     {
         canShoot = false;
-        anim = GetComponent<Animator>();
-        anim.Play("bomber enemy attack");
         shootCooldown = 6;
 
         int numBombs = 3;
@@ -87,8 +85,6 @@ public class Bomber : MonoBehaviour, IEnemy
     public IEnumerator Behavior3()
     {
         canShoot = false;
-        anim = GetComponent<Animator>();
-        anim.Play("bomber enemy attack");
         shootCooldown = 6;
 
         int numBombs = 3;

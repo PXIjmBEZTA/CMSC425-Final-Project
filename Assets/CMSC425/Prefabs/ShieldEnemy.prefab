@@ -284,10 +284,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c89f4dfcbd872a2aaa8eb722b8368c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrierPrefab: {fileID: 100002, guid: fa0a723e3534aca47bcf60641f2f3a8d, type: 3}
+  barrierPrefab: {fileID: 4571803044578227005, guid: d0d303db80c2faa42a0edb0298449283, type: 3}
   barrierCooldown: 10
   reflectiveBarrierPrefab: {fileID: 6239016758726006111, guid: 16aa60c7c547c2da9b695786135b5167, type: 3}
   reflectiveBarrierCooldown: 9
+  anim: {fileID: 0}
 --- !u!65 &5484700928262120919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -477,10 +478,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c89f4dfcbd872a2aaa8eb722b8368c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrierPrefab: {fileID: 100002, guid: fa0a723e3534aca47bcf60641f2f3a8d, type: 3}
+  barrierPrefab: {fileID: 4571803044578227005, guid: d0d303db80c2faa42a0edb0298449283, type: 3}
   barrierCooldown: 10
   reflectiveBarrierPrefab: {fileID: 6239016758726006111, guid: 16aa60c7c547c2da9b695786135b5167, type: 3}
   reflectiveBarrierCooldown: 9
+  anim: {fileID: 0}
 --- !u!65 &3334811353262199747
 BoxCollider:
   m_ObjectHideFlags: 0

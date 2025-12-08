@@ -10,10 +10,18 @@ public class TutorialEnemy : MonoBehaviour, IEnemy
     public EnemyRole role { get; set; } = EnemyRole.Vanguard;
     private int behavior = 1;
     public bool isBoss { get; set; } = false; //
+
+    public Animator anim;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Update()
     {
         if (canShoot)
         {
+            anim.Play("turret attack");
             if (behavior == 1)
                 StartCoroutine(Behavior1());
             else if (behavior == 2)

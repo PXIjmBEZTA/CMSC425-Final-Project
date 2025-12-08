@@ -345,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2181145166178763130, guid: a18421225243f4e4d8f79254f918a703, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.459
       objectReference: {fileID: 0}
     - target: {fileID: 2181145166178763130, guid: a18421225243f4e4d8f79254f918a703, type: 3}
       propertyPath: m_LocalRotation.w
@@ -500,9 +500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dcaca70a45489a6bbf6016ccda796b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotgunPrefab: {fileID: 0}
+  shotgunPrefab: {fileID: 2832338657569917519, guid: 0bae8cb3605c5514ca4e60ec787ee8e3, type: 3}
   shieldPrefab: {fileID: 5879474164898494785, guid: 2b0251e7cced6cfa48db0e5735cea752, type: 3}
-  bomberPrefab: {fileID: 0}
+  bomberPrefab: {fileID: 8527527179400040136, guid: f2f69148647a5314394a06ecac640035, type: 3}
   spawnCooldown: 3
   initialDelay: 4
   anim: {fileID: 0}
