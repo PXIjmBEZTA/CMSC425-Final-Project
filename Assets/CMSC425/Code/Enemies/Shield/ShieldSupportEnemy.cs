@@ -19,6 +19,8 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
     private List<GameObject> shieldedEnemies = new List<GameObject>();
     private List<GameObject> myBarriers = new List<GameObject>();
 
+    public Animator anim;
+
     void Start()
     {
         StartCoroutine(Behavior1());
@@ -33,6 +35,8 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     while (true)
     {
+        anim = GetComponent<Animator>();
+        anim.Play("shielder enemy channel");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         Debug.Log($"[SHIELD] Found {enemies.Length} enemies with Enemy tag");
 
@@ -80,6 +84,8 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
         while (true)
         {
+            anim = GetComponent<Animator>();
+            anim.Play("shielder enemy channel");
             if (reflectiveBarrierPrefab != null)
             {
                 float minX = -5.5f;
@@ -129,6 +135,8 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
     {
         yield return new WaitForSeconds(7f);
 
+        anim = GetComponent<Animator>();
+        anim.Play("shielder enemy channel");
         while (true)
         {
             if (reflectiveBarrierPrefab != null)
@@ -177,6 +185,8 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     void OnDestroy()
     {
+        anim = GetComponent<Animator>();
+        anim.Play("shielder enemy break");
         // Only remove shields that THIS ShieldEnemy created
         foreach (GameObject enemy in shieldedEnemies)
         {

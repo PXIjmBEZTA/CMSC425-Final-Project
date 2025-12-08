@@ -31,6 +31,7 @@ public class MoveShootGuy : MonoBehaviour
         leftKey = kb[leftMove];
         rightKey = kb[rightMove];
         jumpKeyCtrl = kb[jumpKey];
+        //animator = GetComponent<Animator>(); tried fixing the animation bug
     }
 
 

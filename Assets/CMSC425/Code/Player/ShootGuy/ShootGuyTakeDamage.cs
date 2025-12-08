@@ -179,7 +179,7 @@ public class ShootGuyTakeDamage : MonoBehaviour
         if (modelRenderers == null) return;
         foreach (var r in modelRenderers)
         {
-            // This creates per-instance materials — that's fine for flashing.
+            // This creates per-instance materials that's fine for flashing.
             // If you want to avoid instancing, use sharedMaterial (but it affects all instances).
             r.material = mat;
         }
