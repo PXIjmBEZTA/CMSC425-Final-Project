@@ -9,7 +9,11 @@ public class AudioManager : MonoBehaviour
         BigShoot,
         Shoot,
         Music_Menu,
-        Music_Battle,
+        Music_Battle1, //calm
+        Music_Battle2, //mild
+        Music_Battle3, //fun
+        Music_Battle4, //energetic
+        Music_BossBattle, //boss
         Dash,
 
         EnemyShoot,
@@ -17,7 +21,16 @@ public class AudioManager : MonoBehaviour
 
         Damage,
 
-        SwingSword
+        SwingSword,
+        Reflect,
+        ShieldHit,
+        Music_Overworld,
+        Button_press, //
+        Boulder_moving,
+        Player_glide,
+        enemy_chase,
+        enemy_out_of_breathe,
+        enemy_scared
         // Add more sound types as needed
     }
 
@@ -100,6 +113,26 @@ public class AudioManager : MonoBehaviour
         }
 
         _musicSource.clip = track.Clip;
+        _musicSource.volume = track.Volume; //<-oops, forgetting to add this line prevents the audio from being changed by sliding volume
         _musicSource.Play();
+    }
+
+    //Custom: Call this to pick a random battle music from the 4
+    public void PlayRandomBattleMusic()
+    {
+        //array of battle music
+        SoundType[] battleTracks = new SoundType[]
+        {
+            SoundType.Music_Battle1,
+            SoundType.Music_Battle2,
+            SoundType.Music_Battle3,
+            SoundType.Music_Battle4
+        };
+
+        //generate a random index from 0 to array length
+        int randomIndex = Random.Range(0, battleTracks.Length);
+
+        //play the randomly selected track
+        ChangeMusic(battleTracks[randomIndex]);
     }
 }

@@ -15,6 +15,7 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public EnemyRole role { get; set; } = EnemyRole.Support;
 
     private bool canAct = false;
+    public bool isBoss { get; set; } = false;//
 
     void Start()
     {

@@ -33,6 +33,7 @@ public class ReflectiveBarrier : MonoBehaviour
             }
 
             health--;
+            AudioManager.Instance.Play(AudioManager.SoundType.Reflect);
 
             if (health <= 0)
             {

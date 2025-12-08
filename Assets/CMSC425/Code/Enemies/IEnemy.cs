@@ -5,12 +5,14 @@ public interface IEnemy
     int HP { get; set; }
 
     EnemyRole role { get; set; }
+
+    bool isBoss { get ; set; } //
     IEnumerator Behavior1();
     IEnumerator Behavior2();
     IEnumerator Behavior3();
 
     
-      
+
 }
 public enum EnemyRole
 {

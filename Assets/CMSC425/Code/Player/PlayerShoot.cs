@@ -22,14 +22,14 @@ public class PlayerShoot : MonoBehaviour
     //(they will allow us to drag sounds to its field in the inspector view)
     //(make sure to import `using UnityEngine.Events;`)
     public UnityEvent onBigShoot;
-    private AudioInputManager audio;
+    private AudioInputManager audioManager;
 
 
     private void Start()
     {
         shootButton = Mouse.current.leftButton;
         secondShootButton = Keyboard.current[Key.J];
-        audio = AudioInputManager.Instance;
+        audioManager = AudioInputManager.Instance;
         firePoint = GetComponentInChildren<Transform>().Find("PlayerFirePoint");
     }
     // Update is called once per frame
@@ -47,13 +47,13 @@ public class PlayerShoot : MonoBehaviour
             if (counter >= 1.0f)
             {
                 BigShoot();
-                audio.PlayBigShootSound();
+                audioManager.PlayBigShootSound();
             }
 
             else
             {
                 Shoot();
-                audio.PlayShootSound();
+                audioManager.PlayShootSound();
             }
 
 

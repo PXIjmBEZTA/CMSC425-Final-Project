@@ -150,8 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllSounds:
   - Type: 4
-    Clip: {fileID: 0}
-    Volume: 0
+    Clip: {fileID: 8300000, guid: d0af1fd903c8f49ec9f4f9b9d74e7b15, type: 3}
+    Volume: 0.2
     Source: {fileID: 0}
   - Type: 1
     Clip: {fileID: 8300000, guid: 1d1e68ac4458443e5bd9f7ef37def2cc, type: 3}
@@ -162,24 +162,68 @@ MonoBehaviour:
     Volume: 0.766
     Source: {fileID: 0}
   - Type: 9
-    Clip: {fileID: 8300000, guid: ba56270a2c8ee402d93d6b2fdc2eebe6, type: 3}
+    Clip: {fileID: 8300000, guid: 14cfa66cf723849c689a29ede56beae8, type: 3}
     Volume: 0.502
     Source: {fileID: 0}
   - Type: 5
-    Clip: {fileID: 8300000, guid: 14cfa66cf723849c689a29ede56beae8, type: 3}
-    Volume: 1
+    Clip: {fileID: 8300000, guid: 2e898961adc1a414d9ed0856d65bd9e8, type: 3}
+    Volume: 0.2
     Source: {fileID: 0}
   - Type: 6
-    Clip: {fileID: 8300000, guid: 3db6394c8825e4587a3765cedc75427b, type: 3}
-    Volume: 0.013
+    Clip: {fileID: 8300000, guid: f27e28ab3def443baa72d340efd5c38b, type: 3}
+    Volume: 0.2
     Source: {fileID: 0}
   - Type: 7
-    Clip: {fileID: 8300000, guid: b35a17502dd3e4b3cb15d001a673e31d, type: 3}
-    Volume: 0.11
+    Clip: {fileID: 8300000, guid: 32ed9209b897c4f8e8f328d759f1de38, type: 3}
+    Volume: 0.2
     Source: {fileID: 0}
-  - Type: 8
+  - Type: 12
     Clip: {fileID: 8300000, guid: 8727e4f0d1cd440d683041e58124f7f3, type: 3}
     Volume: 0.468
+    Source: {fileID: 0}
+  - Type: 14
+    Clip: {fileID: 8300000, guid: bf1521812e5764d7ab3eab0d2cfac9eb, type: 3}
+    Volume: 0.468
+    Source: {fileID: 0}
+  - Type: 15
+    Clip: {fileID: 8300000, guid: 24aeccf9c5c2d4bb2a923460acf26eef, type: 3}
+    Volume: 0.468
+    Source: {fileID: 0}
+  - Type: 11
+    Clip: {fileID: 8300000, guid: b35a17502dd3e4b3cb15d001a673e31d, type: 3}
+    Volume: 0.21
+    Source: {fileID: 0}
+  - Type: 13
+    Clip: {fileID: 8300000, guid: ba56270a2c8ee402d93d6b2fdc2eebe6, type: 3}
+    Volume: 0.468
+    Source: {fileID: 0}
+  - Type: 10
+    Clip: {fileID: 8300000, guid: 3db6394c8825e4587a3765cedc75427b, type: 3}
+    Volume: 0.09
+    Source: {fileID: 0}
+  - Type: 8
+    Clip: {fileID: 8300000, guid: 50d98fb1b59024d0f8485ce86e64fcb0, type: 3}
+    Volume: 0.2
+    Source: {fileID: 0}
+  - Type: 18
+    Clip: {fileID: 8300000, guid: dc21002544d3e4782a8e8dc48e68d3a8, type: 3}
+    Volume: 0.4
+    Source: {fileID: 0}
+  - Type: 19
+    Clip: {fileID: 8300000, guid: 36901379a568b4017a883512e5b69f09, type: 3}
+    Volume: 0.4
+    Source: {fileID: 0}
+  - Type: 20
+    Clip: {fileID: 8300000, guid: 3d00a030269ff4d468e4eb9a85e2b6eb, type: 3}
+    Volume: 0.4
+    Source: {fileID: 0}
+  - Type: 21
+    Clip: {fileID: 8300000, guid: 2b30b0c61f2794068abc2a7a946df605, type: 3}
+    Volume: 0.4
+    Source: {fileID: 0}
+  - Type: 21
+    Clip: {fileID: 8300000, guid: bfbe4b23311db48da9d3379eb13eca0a, type: 3}
+    Volume: 0.4
     Source: {fileID: 0}
 --- !u!4 &4171013
 Transform:
@@ -413,6 +457,7 @@ MonoBehaviour:
   shootGuyControls: {fileID: 2036069843}
   victoryText: {fileID: 1713612088}
   defeatText: {fileID: 1229675786}
+  transferTime: 4
 --- !u!1 &303157651
 GameObject:
   m_ObjectHideFlags: 0

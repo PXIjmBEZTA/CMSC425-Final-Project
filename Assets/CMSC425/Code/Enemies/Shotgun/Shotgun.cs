@@ -13,6 +13,8 @@ public class Shotgun : MonoBehaviour, IEnemy
     public int HP { get; set; } = 200; //change HP later if needed
     public EnemyRole role { get; set; } = EnemyRole.Vanguard;
 
+    public bool isBoss { get; set; } = false;//
+
     void Update()
     {
         if (canShoot)

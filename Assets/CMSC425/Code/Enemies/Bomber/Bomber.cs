@@ -11,6 +11,7 @@ public class Bomber : MonoBehaviour, IEnemy
     private bool canShoot = true;
 
     public int HP { get; set; } = 150;
+    public bool isBoss { get; set; } = false;//
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public EnemyRole role { get; set; } = EnemyRole.Vanguard;
 

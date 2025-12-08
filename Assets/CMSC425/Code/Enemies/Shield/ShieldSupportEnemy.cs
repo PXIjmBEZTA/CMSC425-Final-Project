@@ -13,6 +13,7 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
     public float reflectiveBarrierCooldown = 15f;
 
     public int HP { get; set; } = 100;
+    public bool isBoss { get; set; } = false;//
     public EnemyRole role { get; set; } = EnemyRole.Support;
 
     private List<GameObject> shieldedEnemies = new List<GameObject>();

@@ -18,8 +18,10 @@ public class EnemyBullet : MonoBehaviour, IEnemyProjectile
         timeLeft = lifeTime;
         speed = 2.5f;
 
-        //play shoot sound as soon as when bullet spawns
-        AudioManager.Instance.Play(AudioManager.SoundType.EnemyShoot);
+        if (!SuppressSound)
+        {
+            AudioManager.Instance.Play(AudioManager.SoundType.EnemyShoot);
+        }
     }
     void Update()
     {

@@ -15,6 +15,7 @@ public class BarrierShield : MonoBehaviour
     {
         health--;
         Debug.Log($"[BARRIER] {gameObject.name} barrier hit! Health remaining: {health}");
+        AudioManager.Instance.Play(AudioManager.SoundType.ShieldHit);
 
         if (health <= 0)
         {

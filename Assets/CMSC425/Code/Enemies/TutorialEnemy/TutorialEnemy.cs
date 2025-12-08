@@ -9,6 +9,7 @@ public class TutorialEnemy : MonoBehaviour, IEnemy
     public int HP { get; set; } = 150;
     public EnemyRole role { get; set; } = EnemyRole.Vanguard;
     private int behavior = 1;
+    public bool isBoss { get; set; } = false; //
     void Update()
     {
         if (canShoot)

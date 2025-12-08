@@ -56,6 +56,18 @@ public class GameManager : MonoBehaviour
 
     public void InitiateCombat(IEnemy[] initialEnemies, int maxVanguard, int maxSupport)
     {
+        //check if any initial enemy is a boss/spawner type
+        bool isBossBattle = initialEnemies.Any(e => e.isBoss); // .[field]
+
+        bool isTutorialBattle = initialEnemies.Any(e => e is TutorialEnemy); // is [type]
+
+        if (isBossBattle)
+            AudioManager.Instance.ChangeMusic(AudioManager.SoundType.Music_BossBattle);
+        else if (isTutorialBattle)
+            AudioManager.Instance.ChangeMusic(AudioManager.SoundType.Music_Battle1);
+        else
+            AudioManager.Instance.PlayRandomBattleMusic();
+
         maxVanguardEnemies = maxVanguard;
         maxSupportEnemies = maxSupport;
         enemies.Clear();

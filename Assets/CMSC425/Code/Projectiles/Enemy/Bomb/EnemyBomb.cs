@@ -20,7 +20,7 @@ public class EnemyBomb : MonoBehaviour
 
         yield return new WaitForSeconds(bombTimer);
 
-        // Play ONE explosion sound here
+        // Play ONE explosion sound here instead of the basic enemy bullet sound
         AudioManager.Instance.Play(AudioManager.SoundType.BombExplode);
 
         for (int i = 0; i < bulletCount; i++)
