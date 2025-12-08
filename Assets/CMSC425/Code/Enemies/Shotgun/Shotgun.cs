@@ -13,6 +13,8 @@ public class Shotgun : MonoBehaviour, IEnemy
     public int HP { get; set; } = 200; //change HP later if needed
     public EnemyRole role { get; set; } = EnemyRole.Vanguard;
 
+    public Animator anim;
+
     void Update()
     {
         if (canShoot)
@@ -30,6 +32,8 @@ public class Shotgun : MonoBehaviour, IEnemy
     public IEnumerator Behavior1() //Basic shotgun shot
     {
         canShoot = false;
+        anim = GetComponent<Animator>();
+        anim.Play("shotgun enemy attack");
         bulletCount = Random.Range(12, 15);//12, 13, or 14 bullets
         float angleStep = spreadAngle / (bulletCount - 1);
         float startAngle = -spreadAngle / 2f;
@@ -43,7 +47,6 @@ public class Shotgun : MonoBehaviour, IEnemy
 
             Instantiate(bulletPrefab, transform.position, rotation);
         }
-
         yield return new WaitForSeconds(shootCooldown);
         canShoot = true;
     }
@@ -51,6 +54,8 @@ public class Shotgun : MonoBehaviour, IEnemy
     public IEnumerator Behavior2() //Shoots left to right instead of default shotgun
     {
         canShoot = false;
+        anim = GetComponent<Animator>();
+        anim.Play("shotgun enemy attack");
         bulletCount = Random.Range(12, 16);
         float angleStep = spreadAngle / (bulletCount - 1);
         float startAngle = -spreadAngle / 2f;
@@ -77,6 +82,8 @@ public class Shotgun : MonoBehaviour, IEnemy
     public IEnumerator Behavior3()
     {
         canShoot = false;
+        anim = GetComponent<Animator>();
+        anim.Play("shotgun enemy attack");
         bulletCount = Random.Range(12, 16);
         float angleStep = spreadAngle / (bulletCount - 1);
         float startAngle = -spreadAngle / 2f;

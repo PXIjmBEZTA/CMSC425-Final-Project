@@ -16,6 +16,8 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
 
     private bool canAct = false;
 
+    public Animator anim;
+
     void Start()
     {
         StartCoroutine(InitialStall());
@@ -46,6 +48,8 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public IEnumerator Behavior1()
     {
         canAct = false;
+        anim = GetComponent<Animator>();
+        anim.Play("spawner enemy attack");
         IEnemy shotGun = shotgunPrefab.GetComponent<IEnemy>();
         StartCoroutine(GameManager.Instance.SpawnEnemy(shotGun));
         yield return new WaitForSeconds(spawnCooldown);
@@ -56,6 +60,8 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public IEnumerator Behavior2()
     {
         canAct = false;
+        anim = GetComponent<Animator>();
+        anim.Play("spawner enemy attack");
         IEnemy shield = shieldPrefab.GetComponent<IEnemy>();
         StartCoroutine(GameManager.Instance.SpawnEnemy(shield));
         yield return new WaitForSeconds(spawnCooldown);
@@ -66,6 +72,8 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
     public IEnumerator Behavior3()
     {
         canAct = false;
+        anim = GetComponent<Animator>();
+        anim.Play("spawner enemy attack");
         IEnemy bomber = bomberPrefab.GetComponent<IEnemy>();
         StartCoroutine(GameManager.Instance.SpawnEnemy(bomber));
         yield return new WaitForSeconds(spawnCooldown);

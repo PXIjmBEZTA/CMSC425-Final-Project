@@ -993,6 +993,7 @@ GameObject:
   - component: {fileID: 3124920220765045170}
   - component: {fileID: 8799144456124536544}
   - component: {fileID: 1597845706776497170}
+  - component: {fileID: 156121392649462787}
   m_Layer: 6
   m_Name: ShootGuyModel
   m_TagString: Player
@@ -1124,7 +1125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1208900415017191153, guid: 5a4cc93a6d9cbe94eb723e0dbac81a49, type: 3}
   bigBulletPrefab: {fileID: 1208900415017191153, guid: 0242bb9264c954fb6a48dbf2a3b42d93, type: 3}
-  firePoint: {fileID: 0}
   fireRate: 0.5
   counter: 0
   onShoot:
@@ -1201,7 +1201,7 @@ MonoBehaviour:
   jumpKey: 1
   jumpHeight: 2
   jumpDuration: 1
-  animator: {fileID: 1783419684526697968}
+  animator: {fileID: 156121392649462787}
 --- !u!114 &1597845706776497170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1224,6 +1224,28 @@ MonoBehaviour:
   heart2: {fileID: 0}
   heart3: {fileID: 0}
   uiShaker: {fileID: 0}
+--- !u!95 &156121392649462787
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611142429330974690}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4272c563dc8d4274b987acd48b8b3b9b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4618507510290302085
 GameObject:
   m_ObjectHideFlags: 0

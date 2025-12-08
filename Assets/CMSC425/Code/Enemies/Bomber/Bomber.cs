@@ -13,6 +13,7 @@ public class Bomber : MonoBehaviour, IEnemy
     public int HP { get; set; } = 150;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public EnemyRole role { get; set; } = EnemyRole.Vanguard;
+    public Animator anim;
 
     void Start()
     {
@@ -41,6 +42,8 @@ public class Bomber : MonoBehaviour, IEnemy
     public IEnumerator Behavior1()
     {
         canShoot = false;
+        anim = GetComponent<Animator>();
+        anim.Play("bomber enemy attack");
         shootCooldown = 3;
         PlaceBomb(); //The bomb itself handles the explosion
         yield return new WaitForSeconds(1);
@@ -54,6 +57,8 @@ public class Bomber : MonoBehaviour, IEnemy
     public IEnumerator Behavior2()
     {
         canShoot = false;
+        anim = GetComponent<Animator>();
+        anim.Play("bomber enemy attack");
         shootCooldown = 6;
 
         int numBombs = 3;
@@ -81,6 +86,8 @@ public class Bomber : MonoBehaviour, IEnemy
     public IEnumerator Behavior3()
     {
         canShoot = false;
+        anim = GetComponent<Animator>();
+        anim.Play("bomber enemy attack");
         shootCooldown = 6;
 
         int numBombs = 3;
