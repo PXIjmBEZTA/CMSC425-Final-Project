@@ -18,7 +18,7 @@ public class Bomber : MonoBehaviour, IEnemy
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         StartCoroutine(InitialStall());
     }
     // Update is called once per frame

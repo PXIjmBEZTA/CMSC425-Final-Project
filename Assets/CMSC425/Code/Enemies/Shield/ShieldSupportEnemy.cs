@@ -23,7 +23,7 @@ public class ShieldSupportEnemy : MonoBehaviour, IEnemy
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         StartCoroutine(Behavior1());
         StartCoroutine(Behavior2());
         StartCoroutine(Behavior3());

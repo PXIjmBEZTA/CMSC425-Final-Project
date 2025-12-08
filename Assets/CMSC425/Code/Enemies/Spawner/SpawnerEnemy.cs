@@ -21,7 +21,7 @@ public class SpawnerEnemy : MonoBehaviour, IEnemy
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         StartCoroutine(InitialStall());
     }
 

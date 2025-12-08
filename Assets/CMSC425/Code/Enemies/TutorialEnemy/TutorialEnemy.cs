@@ -15,7 +15,7 @@ public class TutorialEnemy : MonoBehaviour, IEnemy
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
     void Update()
     {
