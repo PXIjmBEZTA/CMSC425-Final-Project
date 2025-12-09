@@ -641,9 +641,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 2846717986981650497, guid: 36ba93e23038a5339b02e8cacc86bb0f, type: 3}
-  numVanguards: 3
-  numSupports: 3
+  - {fileID: 3946375073108175379, guid: 01b4f63c60541a044bf6c255dff13551, type: 3}
+  numVanguards: 1
+  numSupports: 1
   playingTutorial: 1
 --- !u!4 &598344208
 Transform:
