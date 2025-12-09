@@ -35,12 +35,12 @@ public class TakeDamage : MonoBehaviour
 
     private void Start()
     {
-        player = GetComponentInParent<MovePlayer>();
+        player = GetComponentInParent<MovePlayer>(); //we need to access the speed variable of the player
         lives = maxLives;
-        startPosition = transform.position;
+        startPosition = transform.position; //needed for respawn()
         startRotation = transform.rotation;
 
-        modelRenderers = GetComponentsInChildren<Renderer>();
+        modelRenderers = GetComponentsInChildren<Renderer>(); //model of player. Used for invincibility flashing
         if (modelRenderers == null)
             Debug.Log("No renderers found!");
     }

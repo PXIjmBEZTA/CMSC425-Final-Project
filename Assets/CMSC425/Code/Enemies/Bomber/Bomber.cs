@@ -68,7 +68,7 @@ public class Bomber : MonoBehaviour, IEnemy
         float lengthOfField = maxX - minX;
         float deltaBomb = lengthOfField / (numBombs - 1); // Distance between one bomb and another
         float y = 0.125f;
-        float z = (Random.Range(0, 2) == 0) ? minZ: maxZ;
+        float z = (Random.Range(0, 2) == 0) ? minZ: maxZ; //top or bottom
 
         for (int i = 0; i < numBombs; i++)
         {

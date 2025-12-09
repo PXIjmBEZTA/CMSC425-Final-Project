@@ -44,7 +44,7 @@ public class PlayerShoot : MonoBehaviour
 
         if (shootButton.wasReleasedThisFrame || secondShootButton.wasReleasedThisFrame)
         {
-            if (counter >= 1.0f)
+            if (counter >= 1.0f) //this should be a variable. Oh well, too late to change it now
             {
                 BigShoot();
                 audioManager.PlayBigShootSound();

@@ -69,7 +69,7 @@ public class PlayerSwingSword : MonoBehaviour
         trail.Clear();
         trail.enabled = true;
 
-        float elapsed = 0f;
+        float elapsed = 0f; //timer of how long the sword swing lasted so far
         while (elapsed < swingDuration)
         {
             elapsed += Time.deltaTime;
@@ -77,7 +77,7 @@ public class PlayerSwingSword : MonoBehaviour
             sword.transform.RotateAround(transform.position, Vector3.up, anglePerSecond * Time.deltaTime);
             yield return null;
         }
-        swordDirection = -swordDirection; //swap directions
+        swordDirection = -swordDirection; //swap directions for next swing
         trail.enabled = false;
         sword.transform.localPosition = new Vector3(0, 0, -swordDistance);
         sword.transform.localRotation = startRotation;

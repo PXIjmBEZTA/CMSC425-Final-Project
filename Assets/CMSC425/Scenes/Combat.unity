@@ -621,6 +621,9 @@ GameObject:
   m_Component:
   - component: {fileID: 598344208}
   - component: {fileID: 598344207}
+  - component: {fileID: 598344211}
+  - component: {fileID: 598344210}
+  - component: {fileID: 598344209}
   m_Layer: 0
   m_Name: GameInitializer(for debugging)
   m_TagString: Untagged
@@ -641,10 +644,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 2846717986981650497, guid: 36ba93e23038a5339b02e8cacc86bb0f, type: 3}
-  numVanguards: 3
-  numSupports: 3
-  playingTutorial: 0
+  - {fileID: 3946375073108175379, guid: 01b4f63c60541a044bf6c255dff13551, type: 3}
+  numVanguards: 1
+  numSupports: 1
+  playingTutorial: 1
 --- !u!4 &598344208
 Transform:
   m_ObjectHideFlags: 0
@@ -660,6 +663,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &598344209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598344206}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba11317cc5eefd14093679157285046e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 2846717986981650497, guid: 36ba93e23038a5339b02e8cacc86bb0f, type: 3}
+  numVanguards: 3
+  numSupports: 3
+  playingTutorial: 0
+--- !u!114 &598344210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598344206}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba11317cc5eefd14093679157285046e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 5879474164898494785, guid: 2b0251e7cced6cfa48db0e5735cea752, type: 3}
+  - {fileID: 8527527179400040136, guid: f2f69148647a5314394a06ecac640035, type: 3}
+  - {fileID: 8527527179400040136, guid: f2f69148647a5314394a06ecac640035, type: 3}
+  numVanguards: 2
+  numSupports: 1
+  playingTutorial: 0
+--- !u!114 &598344211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598344206}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba11317cc5eefd14093679157285046e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 8527527179400040136, guid: f2f69148647a5314394a06ecac640035, type: 3}
+  - {fileID: 2832338657569917519, guid: 0bae8cb3605c5514ca4e60ec787ee8e3, type: 3}
+  numVanguards: 2
+  numSupports: 1
+  playingTutorial: 0
 --- !u!1 &607346293
 GameObject:
   m_ObjectHideFlags: 0
